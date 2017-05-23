@@ -21,12 +21,24 @@
     <ClInclude Include="glm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="shapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cena.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CG_Aquario_Main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shapes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cena.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
