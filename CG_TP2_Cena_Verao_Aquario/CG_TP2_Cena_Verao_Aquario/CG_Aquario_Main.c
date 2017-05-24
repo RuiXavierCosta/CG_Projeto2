@@ -44,6 +44,12 @@ double mira_z = 2;				        // direção de visualização da câmara (z)
 double teta_x = 0;				                         // orientação da câmara
 double teta_z = 0;				                         // orientação da câmara
 double campo_visao_y = 50;		                          // campo de visão em y
+
+														  // Posição da fonte de iluminação na origem
+const float pos_luz[] = { 0.0, 0.0, 1.0, 1.0 };
+
+					  // Fator de atenuação da luz
+float const_at = 1.0;
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
@@ -63,18 +69,32 @@ void display(void)
 	glRotatef(teta_z, 0, 0, 1);
 	glScalef(1, 1, 1);
 
+	// Posicionamento da luz
+	glPushMatrix();
+	glTranslatef(0.0, 0.0, 3000);
+	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, const_at);
+	glLightfv(GL_LIGHT0, GL_POSITION, pos_luz);
+	glDisable(GL_LIGHTING);
+
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+
 	// posicionamento da câmara virtual com função gluLookAt
 	glLoadIdentity();
 	gluLookAt(camara_x, camara_y, camara_z, mira_x, mira_y, mira_z, 0, 0, 1);
 
-	desenha_topo_agua(400, 3000);
-	desenha_sol(0, 0, 1000, 100);
+
+	desenha_sol(0, 0, 3000, 100);
+	desenha_topo_agua(2);
+	desenha_areia(-2);
+	desenha_eixos(6000);
 	glutSwapBuffers();
 }
 
 void tecla_especial_premida(int tecla, int x, int y)
 {
-	double k = 20;					        // o que a janela aumenta ou desloca
+	double k = 60;					        // o que a janela aumenta ou desloca
 
 	double nx = mira_x - camara_x;		   // vector de orientação da câmara (x)
 	double ny = mira_y - camara_y;		   // vector de orientação da câmara (y)
@@ -94,28 +114,22 @@ void tecla_especial_premida(int tecla, int x, int y)
 
 	switch (tecla)
 	{
-	case GLUT_KEY_UP:			                  // tecla de seta para cima
-		camara_z += k;
+	case GLUT_KEY_UP:			    	                              // olhar para cima
 		mira_z += k;
 		break;
 
-	case GLUT_KEY_DOWN:			                 // tecla de seta para baixo
-		camara_z -= k;
+	case GLUT_KEY_DOWN:			           // olhar para baixo
 		mira_z -= k;
 		break;
 
-	case GLUT_KEY_LEFT:			                    // tecla para a esquerda
-		camara_x -= ny*k;
-		camara_y += nx*k;
-		mira_x -= ny*k;
-		mira_y += nx*k;
+	case GLUT_KEY_LEFT:			  	                        // olhar para a esquerda
+		mira_x = cos(teta)*(x_mira - xc) - sin(teta)*(y_mira - yc) + xc;
+		mira_y = sin(teta)*(x_mira - xc) + cos(teta)*(y_mira - yc) + yc;
 		break;
 
-	case GLUT_KEY_RIGHT:		                     // tecla para a direita
-		camara_x += ny*k;
-		camara_y -= nx*k;
-		mira_x += ny*k;
-		mira_y -= nx*k;
+	case GLUT_KEY_RIGHT:				  	                         // olhar para a direita
+		mira_x = cos(-teta)*(x_mira - xc) - sin(-teta)*(y_mira - yc) + xc;
+		mira_y = sin(-teta)*(x_mira - xc) + cos(-teta)*(y_mira - yc) + yc;
 		break;
 
 	default:				             // por defeito, não há nenhuma ação
@@ -130,7 +144,7 @@ void redesenha_cena()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	  // limpeza dos buffers
 
-	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);	  // definição do modelo
+	//glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);	  // definição do modelo
 														  // de iluminação	
 	display();						                      // desenho
 }
@@ -216,8 +230,8 @@ void InitGL()
 
 	glShadeModel(GL_SMOOTH);
 
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
+	//glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHT0);
 	glEnable(GL_DEPTH_TEST);
 
 	// modo de preenchimento de polígonos
@@ -227,6 +241,9 @@ void InitGL()
 	glLoadIdentity();
 
 	glMatrixMode(GL_MODELVIEW);
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
