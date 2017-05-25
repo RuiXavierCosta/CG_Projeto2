@@ -30,7 +30,10 @@ GLMmodel* tuna;
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
+
+//  Função para importar os modelos a usar na cena a partir dos respetivos ficheiros OBJ
 void importar_modelos(void);
+
 //
 //	Fim do ficheiro de interface ///////////////////////////////////////////////
 //

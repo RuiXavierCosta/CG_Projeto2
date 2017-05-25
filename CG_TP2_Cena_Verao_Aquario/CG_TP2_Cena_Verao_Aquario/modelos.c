@@ -25,5 +25,12 @@
 //
 void importar_modelos(void)
 {
-
+	goldfish = glmReadOBJ("models/goldfish/GOLDFISH.OBJ");
+	manatee = glmReadOBJ("models/manatee/MANATEE1.OBJ");
+	orca = glmReadOBJ("models/orca/ORCA.OBJ");
+	salmon = glmReadOBJ("models/salmon/SALMON.OBJ");
+	shark = glmReadOBJ("models/shark/Shark.obj");
+	tiger_shark = glmReadOBJ("models/tiger_shark/TGRSHARK.OBJ");
+	trout = glmReadOBJ("models/trout/RB_TROUT.OBJ");
+	tuna = glmReadOBJ("models/tuna/TUNA.OBJ");
 }
