@@ -26,10 +26,11 @@
 const float light_blue[4] = { 0.4156862745098039,  0.7803921568627451, 0.9176470588235294, 0.3 };
 const float sand_yellow[4] = { 0.9607843137254902,  0.8941176470588235, 0.6196078431372549, 1.0 };
 const float sun_yellow[4] = { 0.9607843137254902,  0.9941176470588235, 0.0196078431372549, 1.0 };
-const float bubble_blue[4] = { 0.5372549019607843, 0.803921568627451, 0.8392156862745098, 0.5 };
+const float bubble_blue[4] = { 0.5372549019607843, 0.803921568627451, 0.8392156862745098, 0.3 };
 const float black[4] = { 0.0, 0.0, 0.0, 1.0 };
 const float white[4] = { 1.0, 1.0, 1.0, 1.0 };
 const float baca[] = { 0.0 };
+const float lisa[] = { 0.0 };
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
@@ -60,10 +61,6 @@ void desenha_sol(double x, double y, double z, double diametro)
 {
 	double numero_meridianos = 16;		       // numero de meridianos da esfera
 	double numero_paralelos = 16;		       // numero de paralelos da esfera
-	//double pos_luz[] = { x, y, z - diametro / 2, 0.4 };
-
-	float mat_especular[] = { 1.0, 1.0, 0.0, 0.4 };
-	float mat_brilho[] = { 0.01 };
 
 	glPushMatrix();			  // armazenamento da matriz de transformação actual
 
@@ -72,13 +69,8 @@ void desenha_sol(double x, double y, double z, double diametro)
 		glMaterialfv(GL_FRONT, GL_SPECULAR, black);
 		glMaterialfv(GL_FRONT, GL_SHININESS, baca);
 
-
-		glColor3f(1.0, 1.0, 0.0);			                              // amarelo
-
 		glutSolidSphere(diametro / 2,
 			numero_meridianos, numero_paralelos);	            // desenho da esfera
-
-		//glLightfv(GL_LIGHT0, GL_POSITION, pos_luz);
 
 	glPopMatrix();			  // recuperação da matriz de transformação anteriors
 }
@@ -115,7 +107,25 @@ void desenha_eixos(float comprimento_eixo)
 	glEnd();
 }
 
-void desenha_bolha(float x, float y, float diam , float increm)
+void desenha_bolha(double x, double y, double z, double diametro)
 {
+	double max_value = 2.0;
+
+	double zed = (double)rand() / (double)(RAND_MAX / max_value);
+
+	double numero_meridianos = 16;		       // numero de meridianos da esfera
+	double numero_paralelos = 16;		       // numero de paralelos da esfera
+
+	glPushMatrix();			  // armazenamento da matriz de transformação actual
+
+	glTranslatef(x, y, z);				// colocação da esfera no local desejado
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, bubble_blue);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+	glMaterialfv(GL_FRONT, GL_SHININESS, lisa);
+
+	glutSolidSphere(diametro / 2,
+		numero_meridianos, numero_paralelos);	            // desenho da esfera
+
+	glPopMatrix();			  // recuperação da matriz de transformação anteriors
 
 }

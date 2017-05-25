@@ -47,10 +47,10 @@ double teta_z = 0;				                         // orientação da câmara
 double campo_visao_y = 50;		                          // campo de visão em y
 
 														  // Posição da fonte de iluminação na origem
-const float pos_luz[] = { 0.0, 0.0, 2.5, 1.0 };
+const float pos_luz[] = { 0.0, 0.0, 0.0, 1.0 };
 
 					  // Fator de atenuação da luz
-float const_at = 0.001;
+float const_at = 0.3;
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
@@ -63,20 +63,13 @@ void display(void)
 {
 	printf("Desenha...\n");						                // para controlo
 
-																// posicionamento da câmara virtual com transformações elementares
-	glLoadIdentity();
-	glTranslatef(-camara_x, -camara_y, -camara_z);
-	glRotatef(teta_x, 1, 0, 0);
-	glRotatef(teta_z, 0, 0, 1);
-	glScalef(1, 1, 1);
+	
+	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, const_at);
 
 	// Posicionamento da luz
 	glPushMatrix();
-	glTranslatef(0.0, 0.0, 3000);
-	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, const_at);
-	glLightfv(GL_LIGHT0, GL_POSITION, pos_luz);
-
-	glEnable(GL_LIGHTING);
+		glTranslatef(0.0, 0.0, 2000.0);
+		glLightfv(GL_LIGHT0, GL_POSITION, pos_luz);
 	glPopMatrix();
 
 
@@ -84,11 +77,11 @@ void display(void)
 	glLoadIdentity();
 	gluLookAt(camara_x, camara_y, camara_z, mira_x, mira_y, mira_z, 0, 0, 1);
 
-
 	desenha_sol(0, 0, 3000, 100);
 	desenha_topo_agua(2);
 	desenha_areia(-2);
 	desenha_eixos(6000);
+	desenha_bolha(0.0, 0.0, 0.0, 100);
 	glutSwapBuffers();
 }
 

@@ -40,7 +40,7 @@ void desenha_eixos(float comprimento_eixo);
 
 void desenha_areia(double z);
 
-void desenha_bolha(float x, float y, float diam, float increm);
+void desenha_bolha(double x, double y, double z, double diametro);
 //
 //	Fim do ficheiro de interface ///////////////////////////////////////////////
 //
