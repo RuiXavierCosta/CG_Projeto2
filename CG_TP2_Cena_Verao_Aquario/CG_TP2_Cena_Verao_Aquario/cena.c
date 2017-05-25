@@ -26,6 +26,7 @@
 const float light_blue[4] = { 0.4156862745098039,  0.7803921568627451, 0.9176470588235294, 0.3 };
 const float sand_yellow[4] = { 0.9607843137254902,  0.8941176470588235, 0.6196078431372549, 1.0 };
 const float sun_yellow[4] = { 0.9607843137254902,  0.9941176470588235, 0.0196078431372549, 1.0 };
+const float bubble_blue[4] = { 0.5372549019607843, 0.803921568627451, 0.8392156862745098, 0.5 };
 const float black[4] = { 0.0, 0.0, 0.0, 1.0 };
 const float white[4] = { 1.0, 1.0, 1.0, 1.0 };
 const float baca[] = { 0.0 };
@@ -35,9 +36,6 @@ const float baca[] = { 0.0 };
 
 void desenha_topo_agua(double z)
 {
-
-	float mat_especular[] = { 1.0, 1.0, 0.0, 0.4 };
-	float mat_brilho[] = { 1.0 };
 	
 	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, light_blue);
 	glMaterialfv(GL_FRONT, GL_SPECULAR, white);
@@ -50,11 +48,8 @@ void desenha_topo_agua(double z)
 void desenha_areia(double z)
 {
 
-	float mat_especular[] = { 1.0, 1.0, 0.0, 0.3 };
-	float mat_brilho[] = { 1.0 };
-
 	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, sand_yellow);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, black);
 	glMaterialfv(GL_FRONT, GL_SHININESS, baca);
 
 	desenha_plano(z, sand_yellow);
@@ -99,11 +94,9 @@ void desenha_eixos(float comprimento_eixo)
 	glVertex2f(0.0, 0.0);						                 // eixo OX
 	glVertex2f(comprimento_eixo, 0.0);
 
-	glColor3f(0.0, 1.0, 0.0);					                 // verde
 	glVertex2f(0.0, 0.0);						                 // eixo OY
 	glVertex2f(0.0, comprimento_eixo);
 
-	glColor3f(0.0, 0.0, 1.0);					                 // azul
 	glVertex3f(0.0, 0.0, 0.0);					                 // eixo OZ
 	glVertex3f(0.0, 0.0, comprimento_eixo);
 	glEnd();
@@ -111,16 +104,18 @@ void desenha_eixos(float comprimento_eixo)
 	// desenha linhas (3 eixos negativos) //////////////////////////////////////
 
 	glBegin(GL_LINES);
-	glColor3f(0.7, 0.0, 0.0);					          // vermelho escuro
 	glVertex2f(0.0, 0.0);						          // eixo OX-
 	glVertex2f(-comprimento_eixo, 0.0);
 
-	glColor3f(0.0, 0.7, 0.0);					          // verde escuro
 	glVertex2f(0.0, 0.0);						          // eixo OY-
 	glVertex2f(0.0, -comprimento_eixo);
 
-	glColor3f(0.0, 0.0, 0.7);				 	          // azul escuro
 	glVertex3f(0.0, 0.0, 0.0);				 	          // eixo OZ-
 	glVertex3f(0.0, 0.0, -comprimento_eixo);
 	glEnd();
+}
+
+void desenha_bolha(float x, float y, float diam , float increm)
+{
+
 }

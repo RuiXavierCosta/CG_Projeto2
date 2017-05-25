@@ -25,6 +25,7 @@
 #define PI    3.1415927
 
 double ocean_blue[3] = { 0.0117647058823529, 0.4431372549019608, 0.6117647058823529 };
+
 int largura = 1024;					  // largura da nossa janela de visualização
 int altura = 768;					   // altura da nossa janela de visualização
 
@@ -46,10 +47,10 @@ double teta_z = 0;				                         // orientação da câmara
 double campo_visao_y = 50;		                          // campo de visão em y
 
 														  // Posição da fonte de iluminação na origem
-const float pos_luz[] = { 0.0, 0.0, 1.0, 1.0 };
+const float pos_luz[] = { 0.0, 0.0, 2.5, 1.0 };
 
 					  // Fator de atenuação da luz
-float const_at = 1.0;
+float const_at = 0.001;
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
@@ -74,7 +75,6 @@ void display(void)
 	glTranslatef(0.0, 0.0, 3000);
 	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, const_at);
 	glLightfv(GL_LIGHT0, GL_POSITION, pos_luz);
-	glDisable(GL_LIGHTING);
 
 	glEnable(GL_LIGHTING);
 	glPopMatrix();
@@ -259,6 +259,11 @@ void InitGL()
 	glMatrixMode(GL_PROJECTION);
 
 	glLoadIdentity();
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, white);
 
 	glMatrixMode(GL_MODELVIEW);
 

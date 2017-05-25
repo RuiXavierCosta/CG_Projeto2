@@ -20,6 +20,14 @@
 //
 //<incluir as definicoes necessarias>
 #include <math.h>
+
+const float light_blue[4];
+const float sand_yellow[4];
+const float sun_yellow[4];
+const float bubble_blue[4];
+const float black[4];
+const float white[4];
+const float baca[];
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
@@ -31,6 +39,8 @@ void desenha_topo_agua(double z);
 void desenha_eixos(float comprimento_eixo);
 
 void desenha_areia(double z);
+
+void desenha_bolha(float x, float y, float diam, float increm);
 //
 //	Fim do ficheiro de interface ///////////////////////////////////////////////
 //
