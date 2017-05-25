@@ -187,6 +187,23 @@ void mostra_cena(void)
 	redesenha_cena();
 }
 
+
+//
+//  Função de teclado
+//
+void teclado(int tecla, int x, int y)
+{
+	switch (tecla)
+	{
+	case 27:
+		exit(0);
+		break;
+
+	default:
+		break;
+	}
+}
+
 void InitGLUT()
 {
 
@@ -207,6 +224,9 @@ void InitGLUT()
 
 	// redesenho a cena
 	glutDisplayFunc(redesenha_cena);
+
+	// função de teclado
+	glutKeyboardFunc(teclado);
 
 	// ação quando uma tecla especial e premida
 	glutSpecialFunc(tecla_especial_premida);
