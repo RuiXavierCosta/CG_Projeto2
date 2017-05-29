@@ -26,14 +26,19 @@
 const float light_blue[4] = { 0.4156862745098039,  0.7803921568627451, 0.9176470588235294, 0.3 };
 const float sand_yellow[4] = { 0.9607843137254902,  0.8941176470588235, 0.6196078431372549, 1.0 };
 const float sun_yellow[4] = { 0.9607843137254902,  0.9941176470588235, 0.0196078431372549, 1.0 };
-const float bubble_blue[4] = { 0.5372549019607843, 0.803921568627451, 0.8392156862745098, 0.3 };
+const float bubble_blue[4] = { 0.4, 0.4, 1.0, 0.1 };
 const float black[4] = { 0.0, 0.0, 0.0, 1.0 };
 const float white[4] = { 1.0, 1.0, 1.0, 1.0 };
 const float baca[] = { 0.0 };
-const float lisa[] = { 0.0 };
+const float lisa[] = { 1.0 };
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
+
+float randf(float min, float max)
+{
+	return min + (float)rand() / (float)(RAND_MAX / (max - min));
+}
 
 void desenha_topo_agua(double z)
 {
@@ -109,10 +114,6 @@ void desenha_eixos(float comprimento_eixo)
 
 void desenha_bolha(double x, double y, double z, double diametro)
 {
-	double max_value = 2.0;
-
-	double zed = (double)rand() / (double)(RAND_MAX / max_value);
-
 	double numero_meridianos = 16;		       // numero de meridianos da esfera
 	double numero_paralelos = 16;		       // numero de paralelos da esfera
 
@@ -128,4 +129,13 @@ void desenha_bolha(double x, double y, double z, double diametro)
 
 	glPopMatrix();			  // recuperação da matriz de transformação anteriors
 
+}
+
+void desenha_cluster_bolhas(float array_x[], float array_y[], float array_z[], float base_bolhas, float array_diam[], int num_bolhas)
+{
+
+	for (int i = 0; i < num_bolhas; i++)
+	{
+		desenha_bolha(array_x[i], array_y[i], base_bolhas + array_z[i], array_diam[i]);
+	}
 }

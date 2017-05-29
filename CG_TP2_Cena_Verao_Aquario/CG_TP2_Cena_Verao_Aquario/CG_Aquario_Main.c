@@ -48,9 +48,16 @@ double campo_visao_y = 50;		                          // campo de visão em y
 
 														  // Posição da fonte de iluminação na origem
 const float pos_luz[] = { 0.0, 0.0, 0.0, 1.0 };
-
+float base_bolhas = 2000.0;
 					  // Fator de atenuação da luz
-float const_at = 0.3;
+float const_at = 1.0;
+
+int numero_bolhas = 10;
+float *array_x;
+float *array_y;
+float *array_z;
+float *array_diam;
+
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
@@ -58,6 +65,34 @@ float const_at = 0.3;
 //
 //	Função de inicialização das diversas configurações do GLUT
 //
+void gera_valores_bolhas() 
+{
+
+	if (base_bolhas == 2000.0)
+	{
+		base_bolhas = -100.0*(float)numero_bolhas;
+	}
+
+	if (base_bolhas == -100.0*(float)numero_bolhas)
+	{
+		array_x = (float*)malloc(numero_bolhas * sizeof(float));
+		array_y = (float*)malloc(numero_bolhas * sizeof(float));
+		array_z = (float*)malloc(numero_bolhas * sizeof(float));
+		array_diam = (float*)malloc(numero_bolhas * sizeof(float));
+
+		for (int i = 0; i < numero_bolhas; i++)
+		{
+			array_x[i] = randf(50.0, 100.0);
+			array_y[i] = randf(50.0, 100.0);
+			array_z[i] = randf(0.0, 100.0*(float)numero_bolhas);
+			array_diam[i] = randf(25.0, 65.0);
+		}
+	}
+
+	base_bolhas++;
+
+	desenha_cluster_bolhas(array_x, array_y, array_z, base_bolhas, array_diam, numero_bolhas);
+}
 
 void display(void)
 {
@@ -81,7 +116,7 @@ void display(void)
 	desenha_topo_agua(2);
 	desenha_areia(-2);
 	desenha_eixos(6000);
-	desenha_bolha(0.0, 0.0, 0.0, 100);
+	gera_valores_bolhas();
 	glutSwapBuffers();
 }
 

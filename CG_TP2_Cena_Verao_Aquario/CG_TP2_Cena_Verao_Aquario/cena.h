@@ -41,6 +41,10 @@ void desenha_eixos(float comprimento_eixo);
 void desenha_areia(double z);
 
 void desenha_bolha(double x, double y, double z, double diametro);
+
+void desenha_cluster_bolhas(float array_x[], float array_y[], float array_z[], float base_bolhas, float array_diam[], int num_bolhas);
+
+float randf(float min, float max);
 //
 //	Fim do ficheiro de interface ///////////////////////////////////////////////
 //
