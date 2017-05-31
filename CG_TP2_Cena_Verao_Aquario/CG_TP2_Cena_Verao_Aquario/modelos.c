@@ -37,9 +37,9 @@ void importar_modelos(void)
 	glmVertexNormals(manatee, 90.0);
 
 	orca = glmReadOBJ("models/orca/ORCA.OBJ");
-	glmUnitize(goldfish);
-	glmFacetNormals(goldfish);
-	glmVertexNormals(goldfish, 90.0);
+	glmUnitize(orca);
+	glmFacetNormals(orca);
+	glmVertexNormals(orca, 90.0);
 
 	salmon = glmReadOBJ("models/salmon/SALMON.OBJ");
 	glmUnitize(salmon);
