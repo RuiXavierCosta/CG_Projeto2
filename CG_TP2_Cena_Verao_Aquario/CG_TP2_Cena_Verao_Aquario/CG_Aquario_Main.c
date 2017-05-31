@@ -23,6 +23,7 @@
 //
 // Exemplo da definição de uma constante
 #define PI    3.1415927
+#define ESCAPE 27
 
 double ocean_blue[3] = { 0.0117647058823529, 0.4431372549019608, 0.6117647058823529 };
 
@@ -40,11 +41,12 @@ double camara_z = 2750;					                // posição da câmara (z)
 
 double mira_x = 0;				        // direção de visualização da câmara (x)
 double mira_y = 0;				        // direção de visualização da câmara (y)
-double mira_z = 2;				        // direção de visualização da câmara (z)
+double mira_z = 2000;				        // direção de visualização da câmara (z)
 
 double teta_x = 0;				                         // orientação da câmara
 double teta_z = 0;				                         // orientação da câmara
 double campo_visao_y = 50;		                          // campo de visão em y
+double map_border = 2000.0;
 
 														  // Posição da fonte de iluminação na origem
 const float pos_luz[] = { 0.0, 0.0, 0.0, 1.0 };
@@ -335,7 +337,7 @@ void display(void)
 	glLoadIdentity();
 	gluLookAt(camara_x, camara_y, camara_z, mira_x, mira_y, mira_z, 0, 0, 1);
 
-	desenha_sol(0, 0, 5000, 100);
+	desenha_sol(0, 0, 10000, 400);
 	desenha_topo_agua(4);
 	desenha_areia(0);
 	desenha_eixos(6000);
@@ -384,6 +386,60 @@ void tecla_especial_premida(int tecla, int x, int y)
 		break;
 
 	default:				             // por defeito, não há nenhuma ação
+		break;
+	}
+}
+
+//
+//	Função para controlo das ações nas teclas normais
+//	tecla  - tecla premida
+//	x,y	   - posição do cursor a tecla do rato e premida
+//
+void tecla_premida(unsigned char tecla, int x, int y)
+{
+	double k = 60;					        // o que a janela aumenta ou desloca
+
+	double nx = mira_x - camara_x;		   // vector de orientação da câmara (x)
+	double ny = mira_y - camara_y;		   // vector de orientação da câmara (y)
+	double nz = mira_z - camara_z;		   // vector de orientação da câmara (z)
+
+	double n = sqrt(nx*nx + ny*ny + nz*nz);	                      // norma do vector
+
+	double x_mira = mira_x;
+	double y_mira = mira_y;
+	double xc = camara_x;
+	double yc = camara_y;
+	double teta = k / 180 * 3.14159265 / 10;
+
+	nx /= n;						                                 // normalização
+	ny /= n;
+	nz /= n;
+
+	switch (tecla)
+	{
+	case ESCAPE:			     // tecla de escape, para saída da aplicação
+		exit(0);
+		break;
+
+	case 'w':			  	                              // andar em frente
+			camara_x += nx*k;
+			mira_x += nx*k;
+			camara_y += ny*k;
+			mira_y += ny*k;
+			camara_z += nz*k;
+			mira_z += nz*k;
+		break;
+
+	case 's':			  	                              // andar para trás
+			camara_x -= nx*k;
+			mira_x -= nx*k;
+			camara_y -= ny*k;
+			mira_y -= ny*k;
+			camara_z -= nz*k;
+			mira_z -= nz*k;
+		break;
+
+	default:			  	             // por defeito, não há nenhuma ação
 		break;
 	}
 }
@@ -481,6 +537,9 @@ void InitGLUT()
 
 	// ação quando uma tecla especial e premida
 	glutSpecialFunc(tecla_especial_premida);
+
+	// ação quando uma tecla e premida
+	glutKeyboardFunc(tecla_premida);
 
 	// função para ir mostrando a cena
 	glutIdleFunc(mostra_cena);
