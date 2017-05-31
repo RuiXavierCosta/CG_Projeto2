@@ -36,7 +36,7 @@ double limite_z_posterior = 20000;		           // plano de recorte posterior
 
 double camara_x = 1500;					                // posição da câmara (x)
 double camara_y = 1500;					                // posição da câmara (y)
-double camara_z = 750;					                // posição da câmara (z)
+double camara_z = 2750;					                // posição da câmara (z)
 
 double mira_x = 0;				        // direção de visualização da câmara (x)
 double mira_y = 0;				        // direção de visualização da câmara (y)
@@ -48,15 +48,54 @@ double campo_visao_y = 50;		                          // campo de visão em y
 
 														  // Posição da fonte de iluminação na origem
 const float pos_luz[] = { 0.0, 0.0, 0.0, 1.0 };
-float base_bolhas = 2000.0;
+float base_bolhas1 = 4001.0;
+float base_bolhas2 = 4001.0;
+float base_bolhas3 = 4001.0;
+float base_bolhas4 = 4001.0;
+float base_bolhas5 = 4001.0;
+float base_bolhas6 = 4001.0;
+float base_bolhas7 = 4001.0;
 					  // Fator de atenuação da luz
 float const_at = 1.0;
 
-int numero_bolhas = 10;
-float *array_x;
-float *array_y;
-float *array_z;
-float *array_diam;
+const float pos_bolhas_x[7] = { 0.0, 3000.0, -1000.0, 1000.0, 3000.0, -1000.0, 1000.0 };
+const float pos_bolhas_y[7] = { 0.0, -3000.0, 100.0, 100.0, 0.0, -3000.0, 100.0 };
+
+int numero_bolhas = 100;
+float *array_x1;
+float *array_y1;
+float *array_z1;
+float *array_diam1;
+
+float *array_x2;
+float *array_y2;
+float *array_z2;
+float *array_diam2;
+
+float *array_x3;
+float *array_y3;
+float *array_z3;
+float *array_diam3;
+
+float *array_x4;
+float *array_y4;
+float *array_z4;
+float *array_diam4;
+
+float *array_x5;
+float *array_y5;
+float *array_z5;
+float *array_diam5;
+
+float *array_x6;
+float *array_y6;
+float *array_z6;
+float *array_diam6;
+
+float *array_x7;
+float *array_y7;
+float *array_z7;
+float *array_diam7;
 
 //
 //	Funções ////////////////////////////////////////////////////////////////////
@@ -68,32 +107,216 @@ float *array_diam;
 void gera_valores_bolhas() 
 {
 
-	if (base_bolhas == 2000.0)
+	if (base_bolhas1 == 4001.0 )
 	{
-		base_bolhas = -100.0*(float)numero_bolhas;
+		base_bolhas1 = 3000.0 + -40.0*(float)numero_bolhas;
+
+		base_bolhas2 = 6000.0 + -40.0*(float)numero_bolhas;
+
+		base_bolhas3 = 1000.0 + -40.0*(float)numero_bolhas;
+		
+		base_bolhas4 = 300.0 + -40.0*(float)numero_bolhas;
+
+		base_bolhas5 = 1400.0 + -40.0*(float)numero_bolhas;
+
+		base_bolhas6 = 1800.0 + -40.0*(float)numero_bolhas;
+
+		base_bolhas7 = 4000.0 + -40.0*(float)numero_bolhas;
 	}
 
-	if (base_bolhas == -100.0*(float)numero_bolhas)
+
+	if (base_bolhas1 == 4000.0 )
 	{
-		array_x = (float*)malloc(numero_bolhas * sizeof(float));
-		array_y = (float*)malloc(numero_bolhas * sizeof(float));
-		array_z = (float*)malloc(numero_bolhas * sizeof(float));
-		array_diam = (float*)malloc(numero_bolhas * sizeof(float));
+		base_bolhas1 = -40.0*(float)numero_bolhas;
+	}
+
+
+	if (base_bolhas2 == 4000.0)
+	{
+		base_bolhas2 = -40.0*(float)numero_bolhas;
+	}
+
+
+	if (base_bolhas3 == 4000.0)
+	{
+		base_bolhas3 = -40.0*(float)numero_bolhas;
+	}
+
+
+	if (base_bolhas4 == 4000.0)
+	{
+		base_bolhas4 = -40.0*(float)numero_bolhas;
+	}
+
+
+	if (base_bolhas5 == 4000.0)
+	{
+		base_bolhas5 = -40.0*(float)numero_bolhas;
+	}
+
+	if (base_bolhas6 == 4000.0)
+	{
+		base_bolhas6 = -40.0*(float)numero_bolhas;
+	}
+
+	if (base_bolhas7 == 4000.0)
+	{
+		base_bolhas7 = -40.0*(float)numero_bolhas;
+	}
+
+
+	if (base_bolhas1 == -40.0*(float)numero_bolhas)
+	{
 
 		for (int i = 0; i < numero_bolhas; i++)
 		{
-			array_x[i] = randf(50.0, 100.0);
-			array_y[i] = randf(50.0, 100.0);
-			array_z[i] = randf(0.0, 100.0*(float)numero_bolhas);
-			array_diam[i] = randf(25.0, 65.0);
+			array_x1[i] = pos_bolhas_x[0] + randf(50.0, 100.0);
+			array_y1[i] = pos_bolhas_y[0] + randf(50.0, 100.0);
+			array_z1[i] = randf(20.0, 40.0*(float)numero_bolhas);
+			array_diam1[i] = randf(25.0, 65.0);
 		}
 	}
 
-	base_bolhas++;
+	if (base_bolhas2 == -40.0*(float)numero_bolhas)
+	{
 
-	desenha_cluster_bolhas(array_x, array_y, array_z, base_bolhas, array_diam, numero_bolhas);
+		for (int i = 0; i < numero_bolhas; i++)
+		{
+
+			array_x2[i] = pos_bolhas_x[1] + randf(50.0, 100.0);
+			array_y2[i] = pos_bolhas_y[1] + randf(50.0, 100.0);
+			array_z2[i] = randf(20.0, 40.0*(float)numero_bolhas);
+			array_diam2[i] = randf(25.0, 65.0);
+
+		}
+	}
+
+	if (base_bolhas3 == -40.0*(float)numero_bolhas)
+	{
+
+		for (int i = 0; i < numero_bolhas; i++)
+		{
+			array_x3[i] = pos_bolhas_x[2] + randf(50.0, 100.0);
+			array_y3[i] = pos_bolhas_y[2] + randf(50.0, 100.0);
+			array_z3[i] = randf(20.0, 40.0*(float)numero_bolhas);
+			array_diam3[i] = randf(25.0, 65.0);
+
+		}
+	}
+
+	if (base_bolhas4 == -40.0*(float)numero_bolhas)
+	{
+
+		for (int i = 0; i < numero_bolhas; i++)
+		{
+			array_x4[i] = pos_bolhas_x[3] + randf(50.0, 100.0);
+			array_y4[i] = pos_bolhas_y[3] + randf(50.0, 100.0);
+			array_z4[i] = randf(20.0, 40.0*(float)numero_bolhas);
+			array_diam4[i] = randf(25.0, 65.0);
+
+		}
+	}
+
+	if (base_bolhas5 == -40.0*(float)numero_bolhas)
+	{
+
+		for (int i = 0; i < numero_bolhas; i++)
+		{
+			array_x5[i] = pos_bolhas_x[4] + randf(50.0, 100.0);
+			array_y5[i] = pos_bolhas_y[4] + randf(50.0, 100.0);
+			array_z5[i] = randf(20.0, 40.0*(float)numero_bolhas);
+			array_diam5[i] = randf(25.0, 65.0);
+
+		}
+	}
+
+	if (base_bolhas6 == -40.0*(float)numero_bolhas)
+	{
+
+		for (int i = 0; i < numero_bolhas; i++)
+		{
+			array_x6[i] = pos_bolhas_x[5] + randf(50.0, 100.0);
+			array_y6[i] = pos_bolhas_y[5] + randf(50.0, 100.0);
+			array_z6[i] = randf(20.0, 40.0*(float)numero_bolhas);
+			array_diam6[i] = randf(25.0, 65.0);
+
+		}
+	}
+
+	if (base_bolhas7 == -40.0*(float)numero_bolhas)
+	{
+
+		for (int i = 0; i < numero_bolhas; i++)
+		{
+			array_x7[i] = pos_bolhas_x[6] + randf(50.0, 100.0);
+			array_y7[i] = pos_bolhas_y[6] + randf(50.0, 100.0);
+			array_z7[i] = randf(20.0, 40.0*(float)numero_bolhas);
+			array_diam7[i] = randf(25.0, 65.0);
+		}
+	}
+
+	base_bolhas1+=4;
+	base_bolhas2 += 4;
+	base_bolhas3 += 4;
+	base_bolhas4 += 4;
+	base_bolhas5 += 4;
+	base_bolhas6 += 4;
+	base_bolhas7 += 4;
+
+	desenha_cluster_bolhas(array_x1, array_y1, array_z1, base_bolhas1, array_diam1, numero_bolhas);
+
+	desenha_cluster_bolhas(array_x2, array_y2, array_z2, base_bolhas2, array_diam2, numero_bolhas);
+
+	desenha_cluster_bolhas(array_x3, array_y3, array_z3, base_bolhas3, array_diam3, numero_bolhas);
+
+	desenha_cluster_bolhas(array_x4, array_y4, array_z4, base_bolhas4, array_diam4, numero_bolhas);
+
+	desenha_cluster_bolhas(array_x5, array_y5, array_z5, base_bolhas5, array_diam5, numero_bolhas);
+
+	desenha_cluster_bolhas(array_x6, array_y6, array_z6, base_bolhas6, array_diam6, numero_bolhas);
+
+	desenha_cluster_bolhas(array_x7, array_y7, array_z7, base_bolhas7, array_diam7, numero_bolhas);
+
 }
 
+void preparar_bolhas() {
+
+	array_x1 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_y1 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_z1 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_diam1 = (float*)malloc(numero_bolhas * sizeof(float));
+
+	array_x2 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_y2 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_z2 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_diam2 = (float*)malloc(numero_bolhas * sizeof(float));
+
+	array_x3 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_y3 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_z3 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_diam3 = (float*)malloc(numero_bolhas * sizeof(float));
+
+	array_x4 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_y4 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_z4 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_diam4 = (float*)malloc(numero_bolhas * sizeof(float));
+
+	array_x5 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_y5 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_z5 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_diam5 = (float*)malloc(numero_bolhas * sizeof(float));
+
+	array_x6 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_y6 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_z6 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_diam6 = (float*)malloc(numero_bolhas * sizeof(float));
+
+	array_x7 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_y7 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_z7 = (float*)malloc(numero_bolhas * sizeof(float));
+	array_diam7 = (float*)malloc(numero_bolhas * sizeof(float));
+
+}
 void display(void)
 {
 	printf("Desenha...\n");						                // para controlo
@@ -112,9 +335,9 @@ void display(void)
 	glLoadIdentity();
 	gluLookAt(camara_x, camara_y, camara_z, mira_x, mira_y, mira_z, 0, 0, 1);
 
-	desenha_sol(0, 0, 3000, 100);
-	desenha_topo_agua(2);
-	desenha_areia(-2);
+	desenha_sol(0, 0, 5000, 100);
+	desenha_topo_agua(4);
+	desenha_areia(0);
 	desenha_eixos(6000);
 	gera_valores_bolhas();
 	glutSwapBuffers();
@@ -313,6 +536,7 @@ int main (int argc, char** argv)
 
 	InitGL();
 
+	preparar_bolhas();
 	// Obrigatório registar uma "callback function", neste caso de visualização
 	glutDisplayFunc( display );
 

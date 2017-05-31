@@ -119,7 +119,7 @@ void desenha_plano(float z, float cor[4])
 	glPushMatrix();						      // armazenamento da matriz de
 											  // transformação actual
 
-	glScalef(10000, 10000, 1000);		      // definição do tamanho 
+	glScalef(20000, 20000, 1000);		      // definição do tamanho 
 
 	glTranslatef(0, 0, z);			      // translação para 0,0,-0.51
 
