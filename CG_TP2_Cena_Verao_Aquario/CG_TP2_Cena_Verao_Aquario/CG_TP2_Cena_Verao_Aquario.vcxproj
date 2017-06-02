@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="animais.c" />
     <ClCompile Include="cena.c" />
     <ClCompile Include="CG_Aquario_Main.c" />
     <ClCompile Include="glm.c" />
@@ -155,6 +156,7 @@
     <ClCompile Include="shapes.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animais.h" />
     <ClInclude Include="cena.h" />
     <ClInclude Include="CG_Aquario.h" />
     <ClInclude Include="glm.h" />

@@ -18,6 +18,8 @@
 #include <glut.h>
 #include "glm.h"
 #include "cena.h"
+#include "modelos.h"
+#include "animais.h"
 //
 //	Definições /////////////////////////////////////////////////////////////////
 //
@@ -319,6 +321,19 @@ void preparar_bolhas() {
 	array_diam7 = (float*)malloc(numero_bolhas * sizeof(float));
 
 }
+
+void desenhar_circulo(int radius)
+{
+	float diff[] = { 1.0, 0.0, 0.0, 1.0 };
+	float spec[] = { 1.0, 1.0, 1.0, 1.0 };
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, diff);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, spec);
+	glPushMatrix();
+	glTranslated(800.0, 800.0, 2600.0);
+	glutSolidSphere(radius, 36, 36);
+	glPopMatrix();
+}
+
 void display(void)
 {
 	printf("Desenha...\n");						                // para controlo
@@ -342,6 +357,12 @@ void display(void)
 	desenha_areia(0);
 	desenha_eixos(6000);
 	gera_valores_bolhas();
+
+	// Desenho de circulo (para ajuda ao posicionamento) e dos animais em si
+	desenhar_circulo(20);
+	desenhar_tubarao(800.0, 800.0, 2500.0);
+	desenhar_goldfish(800.0, 800.0, 2400.0);
+
 	glutSwapBuffers();
 }
 
@@ -581,6 +602,15 @@ void InitGL()
 	glEnable(GL_BLEND);
 }
 
+
+void preparar_modelos()
+{
+	importar_modelos();
+	glmScale(shark, 100.0);
+	glmScale(goldfish, 100.0);
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //	Programa Principal /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -590,17 +620,19 @@ int main (int argc, char** argv)
 	// Inicializa o GLUT
 	glutInit(&argc, argv);
 
-
 	InitGLUT();
 
 	InitGL();
 
+	preparar_modelos();
 	preparar_bolhas();
+
 	// Obrigatório registar uma "callback function", neste caso de visualização
 	glutDisplayFunc( display );
 
 	// posicionamento da câmara virtual com função gluLookAt
 	glLoadIdentity();
+
 	// Esperando por eventos
 	glutMainLoop();
 					

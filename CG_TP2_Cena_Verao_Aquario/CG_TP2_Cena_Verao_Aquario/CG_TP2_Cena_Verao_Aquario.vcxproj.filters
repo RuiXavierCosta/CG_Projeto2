@@ -30,6 +30,9 @@
     <ClInclude Include="modelos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="animais.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CG_Aquario_Main.c">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="modelos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animais.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
