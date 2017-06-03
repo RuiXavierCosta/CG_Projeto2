@@ -104,6 +104,39 @@ float *array_y7;
 float *array_z7;
 float *array_diam7;
 
+float vertices_parede1[8][3] = { // imaginando um cubo virado para a camara
+	{ 100.0, -90, 35.0 }, // canto superior direito frente
+	{ 100, -100, 35.0 }, // canto superior direito tras
+	{ -100, -100, 35.0 }, // canto superior esquerdo tras
+	{ -100, -90, 35.0 }, // canto superior esquerdo frente
+	{ 100, -90, 0.0 }, // canto inferior direito frente
+	{ 100, -100, 0.0 }, // canto inferior direito tras
+	{ -100, -100, 0.0 }, // canto inferior esquerdo tras
+	{ -100, -90, 0.0 }, // canto inferior esquerdo frente
+};
+
+float vertices_parede2[8][3] = { // imaginando um cubo virado para a camara
+	{ 90.0, -100.0, 35.0 }, // canto superior direito frente
+	{ 100.0, -100.0, 35.0 }, // canto superior direito tras
+	{ 90, 100, 35.0 }, // canto superior esquerdo tras
+	{ 100, 100, 35.0 }, // canto superior esquerdo frente
+	{ 90, -100, 0.0 }, // canto inferior direito frente
+	{ 100, -100, 0.0 }, // canto inferior direito tras
+	{ 90, 100, 0.0 }, // canto inferior esquerdo tras
+	{ 100, 100, 0.0 }, // canto inferior esquerdo frente
+};
+
+float vertices_parede3[8][3] = { // imaginando um cubo virado para a camara
+	{ -90.0, 100.0, 35.0 }, // canto superior direito frente
+	{ -100.0, 100.0, 35.0 }, // canto superior direito tras
+	{ -100, -100, 35.0 }, // canto superior esquerdo tras
+	{ -90, -100, 35.0 }, // canto superior esquerdo frente
+	{ -90, 100, 0.0 }, // canto inferior direito frente
+	{ -100, 100, 0.0 }, // canto inferior direito tras
+	{ -100, -100, 0.0 }, // canto inferior esquerdo tras
+	{ -90, -100, 0.0 }, // canto inferior esquerdo frente
+};
+
 // Quantidade máxima de texturas a serem usadas no programa
 #define MAX_NO_TEXTURES 1
 
@@ -343,61 +376,6 @@ void desenhar_circulo(int radius)
 	glPopMatrix();
 }
 
-void desenhar_parede(void)
-{
-	glEnable(GL_TEXTURE_2D);
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glLoadIdentity();
-	glPushMatrix();
-	glTranslatef(700.0, 700.0, 2200.0);
-	glScaled(100.0, 100.0, 100.0);
-	/*glRotatef(angulo, 1.0, 0.0, 0.0);
-	glRotatef(angulo, 0.0, 1.0, 0.0);
-	glRotatef(angulo, 0.0, 0.0, 1.0);*/
-
-	// define qual das texturas usar
-	glBindTexture(GL_TEXTURE_2D, texture_id[0]);
-
-	glBegin(GL_QUADS);
-	// Front Face
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
-	// Back Face
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
-	// Top Face
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, 1.0f, 1.0f);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
-	// Bottom Face
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, -1.0f, -1.0f);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
-	// Right Face
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
-	// Left Face
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
-	glEnd();
-
-	glPopMatrix();
-
-	glDisable(GL_TEXTURE_2D);
-
-	glFlush();
-}
-
 void display(void)
 {
 	printf("Desenha...\n");						                // para controlo
@@ -420,14 +398,15 @@ void display(void)
 	desenha_topo_agua(4);
 	desenha_areia(0);
 	desenha_eixos(6000);
+	desenhar_parede(vertices_parede1, texture_id);
+	desenhar_parede(vertices_parede2, texture_id);
+	desenhar_parede(vertices_parede3, texture_id);
 	gera_valores_bolhas();
 
 	// Desenho de circulo (para ajuda ao posicionamento) e dos animais em si
 	desenhar_circulo(20);
 	desenhar_tubarao(800.0, 800.0, 2500.0);
 	desenhar_goldfish(800.0, 800.0, 2400.0);
-
-	desenhar_parede();
 
 	glutSwapBuffers();
 }

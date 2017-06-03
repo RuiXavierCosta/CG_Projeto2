@@ -83,33 +83,35 @@ void desenha_sol(double x, double y, double z, double diametro)
 void desenha_eixos(float comprimento_eixo)
 {
 	printf("Desenha eixos... ");
+	glPushMatrix();
+		glTranslatef(0.0, 0.0, 500.0);
+		// desenha linhas (3 eixos positivos) //////////////////////////////////////
 
-	// desenha linhas (3 eixos positivos) //////////////////////////////////////
+		glBegin(GL_LINES);
+		glColor3f(1.0, 0.0, 0.0);					                 // vermelho
+		glVertex2f(0.0, 0.0);						                 // eixo OX
+		glVertex2f(comprimento_eixo, 0.0);
 
-	glBegin(GL_LINES);
-	glColor3f(1.0, 0.0, 0.0);					                 // vermelho
-	glVertex2f(0.0, 0.0);						                 // eixo OX
-	glVertex2f(comprimento_eixo, 0.0);
+		glVertex2f(0.0, 0.0);						                 // eixo OY
+		glVertex2f(0.0, comprimento_eixo);
 
-	glVertex2f(0.0, 0.0);						                 // eixo OY
-	glVertex2f(0.0, comprimento_eixo);
+		glVertex3f(0.0, 0.0, 0.0);					                 // eixo OZ
+		glVertex3f(0.0, 0.0, comprimento_eixo);
+		glEnd();
 
-	glVertex3f(0.0, 0.0, 0.0);					                 // eixo OZ
-	glVertex3f(0.0, 0.0, comprimento_eixo);
-	glEnd();
+		// desenha linhas (3 eixos negativos) //////////////////////////////////////
 
-	// desenha linhas (3 eixos negativos) //////////////////////////////////////
+		glBegin(GL_LINES);
+		glVertex2f(0.0, 0.0);						          // eixo OX-
+		glVertex2f(-comprimento_eixo, 0.0);
 
-	glBegin(GL_LINES);
-	glVertex2f(0.0, 0.0);						          // eixo OX-
-	glVertex2f(-comprimento_eixo, 0.0);
+		glVertex2f(0.0, 0.0);						          // eixo OY-
+		glVertex2f(0.0, -comprimento_eixo);
 
-	glVertex2f(0.0, 0.0);						          // eixo OY-
-	glVertex2f(0.0, -comprimento_eixo);
-
-	glVertex3f(0.0, 0.0, 0.0);				 	          // eixo OZ-
-	glVertex3f(0.0, 0.0, -comprimento_eixo);
-	glEnd();
+		glVertex3f(0.0, 0.0, 0.0);				 	          // eixo OZ-
+		glVertex3f(0.0, 0.0, -comprimento_eixo);
+		glEnd();
+	glPopMatrix();
 }
 
 void desenha_bolha(double x, double y, double z, double diametro)
@@ -138,4 +140,70 @@ void desenha_cluster_bolhas(float array_x[], float array_y[], float array_z[], f
 	{
 		desenha_bolha(array_x[i], array_y[i], base_bolhas + array_z[i], array_diam[i]);
 	}
+}
+
+void desenhar_parede(float vertices_parede[8][3], GLuint texture_id[1])
+{
+	glEnable(GL_TEXTURE_2D);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glLoadIdentity();
+	glPushMatrix();
+	glScaled(100.0, 100.0, 100.0);
+	/*glRotatef(angulo, 1.0, 0.0, 0.0);
+	glRotatef(angulo, 0.0, 1.0, 0.0);
+	glRotatef(angulo, 0.0, 0.0, 1.0);*/
+
+	// define qual das texturas usar
+	glBindTexture(GL_TEXTURE_2D, texture_id[0]);
+
+	/*
+	-----
+	*/
+	// [0] canto superior direito frente
+	// [1] canto superior direito tras
+	// [2] canto superior esquerdo tras
+	// [3] canto superior esquerdo frente
+	// [4] canto inferior direito frente
+	// [5] canto inferior direito tras
+	// [6] canto inferior esquerdo tras
+	// [7] canto inferior esquerdo frente
+
+	glBegin(GL_QUADS);
+	// Front Face
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(vertices_parede[7][0], vertices_parede[7][1], vertices_parede[7][2]);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(vertices_parede[3][0], vertices_parede[3][1], vertices_parede[3][2]);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(vertices_parede[0][0], vertices_parede[0][1], vertices_parede[0][2]);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(vertices_parede[4][0], vertices_parede[4][1], vertices_parede[4][2]);
+	// Back Face
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(vertices_parede[6][0], vertices_parede[6][1], vertices_parede[6][2]);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(vertices_parede[5][0], vertices_parede[5][1], vertices_parede[5][2]);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(vertices_parede[1][0], vertices_parede[1][1], vertices_parede[1][2]);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(vertices_parede[2][0], vertices_parede[2][1], vertices_parede[2][2]);
+	// Top Face
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(vertices_parede[2][0], vertices_parede[2][1], vertices_parede[2][2]);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(vertices_parede[1][0], vertices_parede[1][1], vertices_parede[1][2]);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(vertices_parede[0][0], vertices_parede[0][1], vertices_parede[0][2]);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(vertices_parede[3][0], vertices_parede[3][1], vertices_parede[3][2]);
+	// Bottom Face
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(vertices_parede[6][0], vertices_parede[6][1], vertices_parede[6][2]);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(vertices_parede[7][0], vertices_parede[7][1], vertices_parede[7][2]);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(vertices_parede[4][0], vertices_parede[4][1], vertices_parede[4][2]);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(vertices_parede[5][0], vertices_parede[5][1], vertices_parede[5][2]);
+	// Right Face
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(vertices_parede[5][0], vertices_parede[5][1], vertices_parede[5][2]);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(vertices_parede[4][0], vertices_parede[4][1], vertices_parede[4][2]);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(vertices_parede[0][0], vertices_parede[0][1], vertices_parede[0][2]);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(vertices_parede[1][0], vertices_parede[1][1], vertices_parede[1][2]);
+	// Left Face
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(vertices_parede[6][0], vertices_parede[6][1], vertices_parede[6][2]);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(vertices_parede[2][0], vertices_parede[2][1], vertices_parede[2][2]);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(vertices_parede[3][0], vertices_parede[3][1], vertices_parede[3][2]);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(vertices_parede[7][0], vertices_parede[7][1], vertices_parede[7][2]);
+	glEnd();
+
+	glPopMatrix();
+
+	glDisable(GL_TEXTURE_2D);
+
+	glFlush();
 }
