@@ -24,13 +24,13 @@
 #define PI    3.1415927
 
 const float light_blue[4] = { 0.4156862745098039,  0.7803921568627451, 0.9176470588235294, 0.3 };
-const float sand_yellow[4] = { 0.9607843137254902,  0.8941176470588235, 0.6196078431372549, 1.0 };
+const float sand_yellow[4] = { 0.831, 0.765, 0.416, 1.0 };
 const float sun_yellow[4] = { 0.9607843137254902,  0.9941176470588235, 0.0196078431372549, 1.0 };
 const float bubble_blue[4] = { 0.4, 0.4, 1.0, 0.1 };
 const float black[4] = { 0.0, 0.0, 0.0, 1.0 };
 const float white[4] = { 1.0, 1.0, 1.0, 1.0 };
-const float baca[] = { 0.0 };
-const float lisa[] = { 1.0 };
+const int baca[] = { 0 };
+const int lisa[] = { 128 };
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
@@ -55,7 +55,7 @@ void desenha_areia(double z)
 {
 
 	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, sand_yellow);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, black);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, sand_yellow);
 	glMaterialfv(GL_FRONT, GL_SHININESS, baca);
 
 	desenha_plano(z, sand_yellow);

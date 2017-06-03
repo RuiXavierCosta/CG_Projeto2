@@ -63,7 +63,7 @@ float base_bolhas5 = 4001.0;
 float base_bolhas6 = 4001.0;
 float base_bolhas7 = 4001.0;
 					  // Fator de atenuação da luz
-float const_at = 1.0;
+float const_at = 3.0;
 
 const float pos_bolhas_x[7] = { 0.0, 3000.0, -1000.0, 1000.0, 3000.0, -1000.0, 1000.0 };
 const float pos_bolhas_y[7] = { 0.0, -3000.0, 100.0, 100.0, 0.0, -3000.0, 100.0 };
@@ -403,11 +403,11 @@ void display(void)
 	printf("Desenha...\n");						                // para controlo
 
 	
-	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, const_at);
+	glLightf(GL_LIGHT0, GL_AMBIENT, const_at);
 
 	// Posicionamento da luz
 	glPushMatrix();
-		glTranslatef(0.0, 0.0, 2000.0);
+		glTranslatef(0.0, 0.0, 5000.0);
 		glLightfv(GL_LIGHT0, GL_POSITION, pos_luz);
 	glPopMatrix();
 
@@ -659,6 +659,7 @@ void InitGL()
 
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, white);
 
