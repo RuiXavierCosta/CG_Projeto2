@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <glut.h>
+#include "tgaload.h"
 extern "C" {
 #include "glm.h"
 #include "cena.h"
@@ -102,6 +103,12 @@ float *array_x7;
 float *array_y7;
 float *array_z7;
 float *array_diam7;
+
+// Quantidade máxima de texturas a serem usadas no programa
+#define MAX_NO_TEXTURES 1
+
+// Vetor com os números das texturas
+GLuint texture_id[MAX_NO_TEXTURES];
 
 //
 //	Funções ////////////////////////////////////////////////////////////////////
@@ -336,6 +343,61 @@ void desenhar_circulo(int radius)
 	glPopMatrix();
 }
 
+void desenhar_parede(void)
+{
+	glEnable(GL_TEXTURE_2D);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(700.0, 700.0, 2200.0);
+	glScaled(100.0, 100.0, 100.0);
+	/*glRotatef(angulo, 1.0, 0.0, 0.0);
+	glRotatef(angulo, 0.0, 1.0, 0.0);
+	glRotatef(angulo, 0.0, 0.0, 1.0);*/
+
+	// define qual das texturas usar
+	glBindTexture(GL_TEXTURE_2D, texture_id[0]);
+
+	glBegin(GL_QUADS);
+	// Front Face
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+	// Back Face
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
+	// Top Face
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+	// Bottom Face
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, -1.0f, -1.0f);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+	// Right Face
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+	// Left Face
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+	glEnd();
+
+	glPopMatrix();
+
+	glDisable(GL_TEXTURE_2D);
+
+	glFlush();
+}
+
 void display(void)
 {
 	printf("Desenha...\n");						                // para controlo
@@ -364,6 +426,8 @@ void display(void)
 	desenhar_circulo(20);
 	desenhar_tubarao(800.0, 800.0, 2500.0);
 	desenhar_goldfish(800.0, 800.0, 2400.0);
+
+	desenhar_parede();
 
 	glutSwapBuffers();
 }
@@ -613,6 +677,34 @@ void preparar_modelos()
 }
 
 
+// Define a textura a ser usada
+void preparar_textura(void)
+{
+	// Habilita o uso de textura 
+	//glEnable(GL_TEXTURE_2D);
+
+	// Define a forma de armazenamento dos pixels na textura
+	// (1 = alinhamento por byte)
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	// Define quantas texturas serão usadas no programa 
+	glGenTextures(1, texture_id);  // 1 = uma textura;
+								   // texture_id = vetor que guardas os números das texturas
+
+								   // Define o número da textura do cubo.
+	texture_id[0] = 1001;
+
+	// Define que tipo de textura será usada
+	// GL_TEXTURE_2D ==> define que será usada uma textura 2D (bitmaps)
+	// texture_id[0]  ==> define o número da textura 
+	glBindTexture(GL_TEXTURE_2D, texture_id[0]);
+
+	// carrega a uma imagem TGA 
+	image_t temp_image;
+	tgaLoad("aquario.tga", &temp_image, TGA_FREE | TGA_LOW_QUALITY);
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //	Programa Principal /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -628,6 +720,7 @@ int main (int argc, char** argv)
 
 	preparar_modelos();
 	preparar_bolhas();
+	preparar_textura();
 
 	// Obrigatório registar uma "callback function", neste caso de visualização
 	glutDisplayFunc( display );

@@ -89,6 +89,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,6 +155,7 @@
     <ClCompile Include="glm.c" />
     <ClCompile Include="modelos.c" />
     <ClCompile Include="shapes.c" />
+    <ClCompile Include="tgaload.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animais.h" />
@@ -162,6 +164,7 @@
     <ClInclude Include="glm.h" />
     <ClInclude Include="modelos.h" />
     <ClInclude Include="shapes.h" />
+    <ClInclude Include="tgaload.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

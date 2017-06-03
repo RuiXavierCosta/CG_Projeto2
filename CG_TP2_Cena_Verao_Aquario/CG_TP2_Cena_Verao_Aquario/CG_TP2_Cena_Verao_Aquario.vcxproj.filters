@@ -33,6 +33,9 @@
     <ClInclude Include="animais.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tgaload.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glm.c">
@@ -51,6 +54,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="shapes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tgaload.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
