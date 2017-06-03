@@ -137,8 +137,19 @@ float vertices_parede3[8][3] = { // imaginando um cubo virado para a camara
 	{ -90, -100, 0.0 }, // canto inferior esquerdo frente
 };
 
+float vertices_areia[8][3] = { // imaginando um cubo virado para a camara
+	{ -100.0, 100.0, 0.0 }, // canto superior direito frente
+	{ -100.0, -100.0, 0.0 }, // canto superior direito tras
+	{ 100.0, -100.0, 0.0 }, // canto superior esquerdo tras
+	{ 100.0, 100.0, 0.0 }, // canto superior esquerdo frente
+	{ -100, 100, -1.0 }, // canto inferior direito frente
+	{ -100, -100, -1.0 }, // canto inferior direito tras
+	{ 100, -100, -1.0 }, // canto inferior esquerdo tras
+	{ 100, 100, -1.0 }, // canto inferior esquerdo frente
+};
+
 // Quantidade máxima de texturas a serem usadas no programa
-#define MAX_NO_TEXTURES 1
+#define MAX_NO_TEXTURES 2
 
 // Vetor com os números das texturas
 GLuint texture_id[MAX_NO_TEXTURES];
@@ -396,11 +407,12 @@ void display(void)
 
 	desenha_sol(0, 0, 10000, 400);
 	desenha_topo_agua(4);
-	desenha_areia(0);
+	//desenha_areia(0);
 	desenha_eixos(6000);
-	desenhar_parede(vertices_parede1, texture_id);
-	desenhar_parede(vertices_parede2, texture_id);
-	desenhar_parede(vertices_parede3, texture_id);
+	desenhar_parede(vertices_parede1, texture_id, 0);
+	desenhar_parede(vertices_parede2, texture_id, 0);
+	desenhar_parede(vertices_parede3, texture_id, 0);
+	desenhar_parede(vertices_areia, texture_id, 1);
 	gera_valores_bolhas();
 
 	// Desenho de circulo (para ajuda ao posicionamento) e dos animais em si
@@ -668,7 +680,7 @@ void preparar_textura(void)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	// Define quantas texturas serão usadas no programa 
-	glGenTextures(1, texture_id);  // 1 = uma textura;
+	glGenTextures(2, texture_id);  // 1 = uma textura;
 								   // texture_id = vetor que guardas os números das texturas
 
 								   // Define o número da textura do cubo.
@@ -678,10 +690,15 @@ void preparar_textura(void)
 	// GL_TEXTURE_2D ==> define que será usada uma textura 2D (bitmaps)
 	// texture_id[0]  ==> define o número da textura 
 	glBindTexture(GL_TEXTURE_2D, texture_id[0]);
-
 	// carrega a uma imagem TGA 
-	image_t temp_image;
-	tgaLoad("aquario.tga", &temp_image, TGA_FREE | TGA_LOW_QUALITY);
+	image_t temp_image1;
+	tgaLoad("aquario.tga", &temp_image1, TGA_FREE | TGA_LOW_QUALITY);
+
+
+	texture_id[1] = 1002;
+	glBindTexture(GL_TEXTURE_2D, texture_id[1]);
+	image_t temp_image2;
+	tgaLoad("areia.tga", &temp_image2, TGA_FREE | TGA_LOW_QUALITY);
 }
 
 

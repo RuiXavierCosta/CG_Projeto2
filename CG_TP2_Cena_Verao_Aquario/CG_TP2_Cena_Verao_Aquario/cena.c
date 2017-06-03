@@ -142,7 +142,7 @@ void desenha_cluster_bolhas(float array_x[], float array_y[], float array_z[], f
 	}
 }
 
-void desenhar_parede(float vertices_parede[8][3], GLuint texture_id[1])
+void desenhar_parede(float vertices_parede[8][3], GLuint texture_id[], int id)
 {
 	glEnable(GL_TEXTURE_2D);
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -154,7 +154,7 @@ void desenhar_parede(float vertices_parede[8][3], GLuint texture_id[1])
 	glRotatef(angulo, 0.0, 0.0, 1.0);*/
 
 	// define qual das texturas usar
-	glBindTexture(GL_TEXTURE_2D, texture_id[0]);
+	glBindTexture(GL_TEXTURE_2D, texture_id[id]);
 
 	/*
 	-----

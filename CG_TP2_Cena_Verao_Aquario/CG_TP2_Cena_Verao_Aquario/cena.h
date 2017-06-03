@@ -46,7 +46,7 @@ void desenha_cluster_bolhas(float array_x[], float array_y[], float array_z[], f
 
 float randf(float min, float max);
 
-void desenhar_parede(float vertices_parede[8][3], GLuint texture_id[1]);
+void desenhar_parede(float vertices_parede[8][3], GLuint texture_id[1], int id);
 //
 //	Fim do ficheiro de interface ///////////////////////////////////////////////
 //
