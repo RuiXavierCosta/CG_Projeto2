@@ -150,7 +150,7 @@
   <ItemGroup>
     <ClCompile Include="animais.c" />
     <ClCompile Include="cena.c" />
-    <ClCompile Include="CG_Aquario_Main.c" />
+    <ClCompile Include="CG_Aquario_Main.cpp" />
     <ClCompile Include="glm.c" />
     <ClCompile Include="modelos.c" />
     <ClCompile Include="shapes.c" />

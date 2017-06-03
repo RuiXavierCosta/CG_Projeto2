@@ -16,10 +16,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <glut.h>
+extern "C" {
 #include "glm.h"
 #include "cena.h"
 #include "modelos.h"
 #include "animais.h"
+}
 //
 //	Definições /////////////////////////////////////////////////////////////////
 //
@@ -519,7 +521,7 @@ void mostra_cena(void)
 //
 //  Função de teclado
 //
-void teclado(int tecla, int x, int y)
+void teclado(unsigned char tecla, int x, int y)
 {
 	switch (tecla)
 	{

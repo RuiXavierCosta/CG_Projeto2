@@ -21,13 +21,13 @@
 //<incluir as definicoes necessarias>
 #include <math.h>
 
-const float light_blue[4];
-const float sand_yellow[4];
-const float sun_yellow[4];
-const float bubble_blue[4];
-const float black[4];
-const float white[4];
-const float baca[];
+extern const float light_blue[4];
+extern const float sand_yellow[4];
+extern const float sun_yellow[4];
+extern const float bubble_blue[4];
+extern const float black[4];
+extern const float white[4];
+extern const float baca[];
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //

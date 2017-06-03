@@ -35,13 +35,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CG_Aquario_Main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="glm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shapes.c">
+    <ClCompile Include="CG_Aquario_Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animais.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cena.c">
@@ -50,7 +50,7 @@
     <ClCompile Include="modelos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="animais.c">
+    <ClCompile Include="shapes.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
