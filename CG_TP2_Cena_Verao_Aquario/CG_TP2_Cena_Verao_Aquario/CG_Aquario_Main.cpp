@@ -105,36 +105,36 @@ float *array_z7;
 float *array_diam7;
 
 float vertices_parede1[8][3] = { // imaginando um cubo virado para a camara
-	{ 100.0, -90, 35.0 }, // canto superior direito frente
-	{ 100, -100, 35.0 }, // canto superior direito tras
-	{ -100, -100, 35.0 }, // canto superior esquerdo tras
-	{ -100, -90, 35.0 }, // canto superior esquerdo frente
-	{ 100, -90, 0.0 }, // canto inferior direito frente
-	{ 100, -100, 0.0 }, // canto inferior direito tras
-	{ -100, -100, 0.0 }, // canto inferior esquerdo tras
-	{ -100, -90, 0.0 }, // canto inferior esquerdo frente
+	{ 99.0, -99, 35.0 }, // canto superior direito frente
+	{ 99, -100, 35.0 }, // canto superior direito tras
+	{ -99, -100, 35.0 }, // canto superior esquerdo tras
+	{ -99, -99, 35.0 }, // canto superior esquerdo frente
+	{ 99, -99, 0.0 }, // canto inferior direito frente
+	{ 99, -100, 0.0 }, // canto inferior direito tras
+	{ -99, -100, 0.0 }, // canto inferior esquerdo tras
+	{ -99, -99, 0.0 }, // canto inferior esquerdo frente
 };
 
 float vertices_parede2[8][3] = { // imaginando um cubo virado para a camara
-	{ 90.0, -100.0, 35.0 }, // canto superior direito frente
+	{ 99.0, -100.0, 35.0 }, // canto superior direito frente
 	{ 100.0, -100.0, 35.0 }, // canto superior direito tras
-	{ 90, 100, 35.0 }, // canto superior esquerdo tras
+	{ 99, 100, 35.0 }, // canto superior esquerdo tras
 	{ 100, 100, 35.0 }, // canto superior esquerdo frente
-	{ 90, -100, 0.0 }, // canto inferior direito frente
+	{ 99, -100, 0.0 }, // canto inferior direito frente
 	{ 100, -100, 0.0 }, // canto inferior direito tras
-	{ 90, 100, 0.0 }, // canto inferior esquerdo tras
+	{ 99, 100, 0.0 }, // canto inferior esquerdo tras
 	{ 100, 100, 0.0 }, // canto inferior esquerdo frente
 };
 
 float vertices_parede3[8][3] = { // imaginando um cubo virado para a camara
-	{ -90.0, 100.0, 35.0 }, // canto superior direito frente
+	{ -99.0, 100.0, 35.0 }, // canto superior direito frente
 	{ -100.0, 100.0, 35.0 }, // canto superior direito tras
 	{ -100, -100, 35.0 }, // canto superior esquerdo tras
-	{ -90, -100, 35.0 }, // canto superior esquerdo frente
-	{ -90, 100, 0.0 }, // canto inferior direito frente
+	{ -99, -100, 35.0 }, // canto superior esquerdo frente
+	{ -99, 100, 0.0 }, // canto inferior direito frente
 	{ -100, 100, 0.0 }, // canto inferior direito tras
 	{ -100, -100, 0.0 }, // canto inferior esquerdo tras
-	{ -90, -100, 0.0 }, // canto inferior esquerdo frente
+	{ -99, -100, 0.0 }, // canto inferior esquerdo frente
 };
 
 float vertices_areia[8][3] = { // imaginando um cubo virado para a camara
@@ -406,7 +406,7 @@ void display(void)
 	gluLookAt(camara_x, camara_y, camara_z, mira_x, mira_y, mira_z, 0, 0, 1);
 
 	desenha_sol(0, 0, 10000, 400);
-	//desenha_topo_agua(4);
+	desenha_topo_agua(4);
 	//desenha_areia(0);
 	desenha_eixos(6000);
 	desenhar_parede(vertices_parede1, texture_id, 0);

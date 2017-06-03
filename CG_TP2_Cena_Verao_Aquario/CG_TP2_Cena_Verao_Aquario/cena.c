@@ -23,7 +23,7 @@
 // Exemplo da definição de uma constante
 #define PI    3.1415927
 
-const float light_blue[4] = { 0.4156862745098039,  0.7803921568627451, 0.9176470588235294, 0.3 };
+const float light_blue[4] = { 0.4156862745098039,  0.7803921568627451, 0.9176470588235294, 0.6 };
 const float sand_yellow[4] = { 0.831, 0.765, 0.416, 1.0 };
 const float sun_yellow[4] = { 0.9607843137254902,  0.9941176470588235, 0.0196078431372549, 1.0 };
 const float bubble_blue[4] = { 0.4, 0.4, 1.0, 0.1 };
@@ -144,6 +144,10 @@ void desenha_cluster_bolhas(float array_x[], float array_y[], float array_z[], f
 
 void desenhar_parede(float vertices_parede[8][3], GLuint texture_id[], int id)
 {
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+	glMaterialfv(GL_FRONT, GL_SHININESS, baca);
+
 	glEnable(GL_TEXTURE_2D);
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//glLoadIdentity();
