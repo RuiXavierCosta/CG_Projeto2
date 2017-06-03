@@ -406,7 +406,7 @@ void display(void)
 	gluLookAt(camara_x, camara_y, camara_z, mira_x, mira_y, mira_z, 0, 0, 1);
 
 	desenha_sol(0, 0, 10000, 400);
-	desenha_topo_agua(4);
+	//desenha_topo_agua(4);
 	//desenha_areia(0);
 	desenha_eixos(6000);
 	desenhar_parede(vertices_parede1, texture_id, 0);
