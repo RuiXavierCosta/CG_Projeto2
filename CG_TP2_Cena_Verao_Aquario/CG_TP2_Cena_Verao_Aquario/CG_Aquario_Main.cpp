@@ -404,7 +404,7 @@ void preparar_bolhas() {
 
 void display(void)
 {
-	printf("Desenha...\n");						                // para controlo
+	//printf("Desenha...\n");						                // para controlo
 
 	
 	glLightf(GL_LIGHT0, GL_AMBIENT, const_at0);
@@ -597,7 +597,7 @@ void redesenha_cena()
 //
 void redimensiona_janela(int param_largura, int param_altura)
 {
-	printf("Redimensiona_janela...\n");		      // para controlo (facultativo)
+	//printf("Redimensiona_janela...\n");		      // para controlo (facultativo)
 
 	if (param_altura == 0)					// teste se a janela está minimizada
 	{
@@ -649,7 +649,6 @@ void teclado(unsigned char tecla, int x, int y)
 
 void InitGLUT()
 {
-
 	// definição do modo inicial de visualização
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
@@ -667,9 +666,6 @@ void InitGLUT()
 
 	// redesenho a cena
 	glutDisplayFunc(redesenha_cena);
-
-	// função de teclado
-	glutKeyboardFunc(teclado);
 
 	// ação quando uma tecla especial e premida
 	glutSpecialFunc(tecla_especial_premida);
@@ -696,12 +692,6 @@ void InitGL()
 
 	glShadeModel(GL_SMOOTH);
 
-	//glEnable(GL_LIGHTING);
-	//glEnable(GL_LIGHT0);
-	glEnable(GL_DEPTH_TEST);
-
-	// modo de preenchimento de polígonos
-
 	glMatrixMode(GL_PROJECTION);
 
 	glLoadIdentity();
@@ -722,20 +712,14 @@ void InitGL()
 // Define a textura a ser usada
 void preparar_textura(void)
 {
-	// Habilita o uso de textura 
-	//glEnable(GL_TEXTURE_2D);
-
 	// Define a forma de armazenamento dos pixels na textura
 	// (1 = alinhamento por byte)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	// Define quantas texturas serão usadas no programa 
-	glGenTextures(3, texture_id);  // 1 = uma textura;
-								   // texture_id = vetor que guardas os números das texturas
+	glGenTextures(3, texture_id);
 
-								   // Define o número da textura do cubo.
 	texture_id[0] = 1001;
-
 	// Define que tipo de textura será usada
 	// GL_TEXTURE_2D ==> define que será usada uma textura 2D (bitmaps)
 	// texture_id[0]  ==> define o número da textura 
@@ -757,6 +741,15 @@ void preparar_textura(void)
 }
 
 
+void instrucoes(void)
+{
+	printf_s("Bem-vindo!\n");
+	printf_s("Para se movimentar na sala de visualizacao, prima as teclas W, A, S ou D.\n");
+	printf_s("Para alterar a orientacao da camara, prima as teclas de seta.\n");
+	printf_s("Para fechar a aplicacao, prima a tecla Escape.\n");
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //	Programa Principal /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -766,10 +759,14 @@ int main (int argc, char** argv)
 	// Inicializa o GLUT
 	glutInit(&argc, argv);
 
-	InitGLUT();
+	// Mostra as instruções de uso
+	instrucoes();
 
+	// Inicializa vários parâmetros relativos ao GLUT e OpenGL
+	InitGLUT();
 	InitGL();
 
+	// Prepara os modelos, bolhas e texturas para serem usados no programa
 	preparar_modelos();
 	preparar_bolhas();
 	preparar_textura();
