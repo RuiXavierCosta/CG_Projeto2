@@ -164,16 +164,6 @@ float vertices_topo_agua[8][3] = { // imaginando um cubo virado para a camara
 	{ 100, 100, 35.1 }, // canto inferior esquerdo frente
 };
 
-float vertices_vidro[8][3] = { // imaginando um cubo virado para a camara
-	{ 99.0, 100, 35.0 }, // canto superior direito frente
-	{ 99, 99, 35.0 }, // canto superior direito tras
-	{ -99, 99, 35.0 }, // canto superior esquerdo tras
-	{ -99, 100, 35.0 }, // canto superior esquerdo frente
-	{ 99, 100, 0.0 }, // canto inferior direito frente
-	{ 99, 99, 0.0 }, // canto inferior direito tras
-	{ -99, 99, 0.0 }, // canto inferior esquerdo tras
-	{ -99, 100, 0.0 }, // canto inferior esquerdo frente
-};
 
 // Quantidade máxima de texturas a serem usadas no programa
 #define MAX_NO_TEXTURES 3
@@ -404,8 +394,6 @@ void preparar_bolhas() {
 
 void display(void)
 {
-	//printf("Desenha...\n");						                // para controlo
-
 	
 	glLightf(GL_LIGHT0, GL_AMBIENT, const_at0);
 
@@ -420,10 +408,7 @@ void display(void)
 	glLoadIdentity();
 	gluLookAt(camara_x, camara_y, camara_z, mira_x, mira_y, mira_z, 0, 0, 1);
 
-	desenha_sol(0, 0, 10000, 400);
 	desenha_topo_agua(4.1);
-	//desenha_areia(0);
-	//desenha_eixos(6000);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, branco);
 	desenhar_parede(vertices_parede1, texture_id, 0);
 	desenhar_parede(vertices_parede2, texture_id, 0);
@@ -431,17 +416,10 @@ void display(void)
 	desenhar_parede(vertices_areia, texture_id, 1);
 	desenha_sala();
 	desenhar_parede(vertices_topo_agua, texture_id, 2);
-	//desenha_vidro(vertices_vidro);
-	
 
 	gera_valores_bolhas();
 
 	desenha_peixes();
-	
-	//glEnable(GL_TEXTURE_2D);
-	//glBindTexture(GL_TEXTURE_2D, texture_id[1]);
-	//desenhar_objeto_tex(goldfish, posicao_goldfish, rotacao_goldfish);
-	//glDisable(GL_TEXTURE_2D);
 
 	glutSwapBuffers();
 }
@@ -527,8 +505,6 @@ void tecla_premida(unsigned char tecla, int x, int y)
 			camara_y += ny*k;
 			mira_y += ny*k;
 		}
-			//camara_z += nz*k;
-			//mira_z += nz*k;
 		break;
 
 	case 's':
@@ -542,8 +518,6 @@ void tecla_premida(unsigned char tecla, int x, int y)
 			camara_y -= ny*k;
 			mira_y -= ny*k;
 		}
-			//camara_z -= nz*k;
-			//mira_z -= nz*k;
 		break;
 	case 'a':			  	                              // andar para a esquerda
 		if (camara_x - ny*k > -5000 && camara_x - ny*k < 5000)
@@ -556,8 +530,6 @@ void tecla_premida(unsigned char tecla, int x, int y)
 			camara_y += nx*k;
 			mira_y += nx*k;
 		}
-		//camara_z += nz*k;
-		//mira_z += nz*k;
 		break;
 
 	case 'd': //andar para a direita
@@ -571,8 +543,6 @@ void tecla_premida(unsigned char tecla, int x, int y)
 			camara_y -= nx*k;
 			mira_y -= nx*k;
 		}
-		//camara_z -= nz*k;
-		//mira_z -= nz*k;
 		break;
 
 	default:			  	             // por defeito, não há nenhuma ação
@@ -587,8 +557,6 @@ void redesenha_cena()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	  // limpeza dos buffers
 
-	//glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);	  // definição do modelo
-														  // de iluminação	
 	display();						                      // desenho
 }
 
@@ -597,8 +565,7 @@ void redesenha_cena()
 //
 void redimensiona_janela(int param_largura, int param_altura)
 {
-	//printf("Redimensiona_janela...\n");		      // para controlo (facultativo)
-
+	
 	if (param_altura == 0)					// teste se a janela está minimizada
 	{
 		return;
