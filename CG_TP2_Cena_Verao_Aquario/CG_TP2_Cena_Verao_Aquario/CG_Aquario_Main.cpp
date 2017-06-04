@@ -558,12 +558,12 @@ void tecla_premida(unsigned char tecla, int x, int y)
 		break;
 
 	case 's':
-		if (camara_x + nx*k > -5000 && camara_x + nx*k < 5000)
+		if (camara_x - nx*k > -5000 && camara_x - nx*k < 5000)
 		{// andar para trás
 			camara_x -= nx*k;
 			mira_x -= nx*k;
 		}
-		if (camara_y + ny*k > 10000 && camara_y + ny*k< 11900)
+		if (camara_y - ny*k > 10000 && camara_y - ny*k< 11900)
 		{
 			camara_y -= ny*k;
 			mira_y -= ny*k;
