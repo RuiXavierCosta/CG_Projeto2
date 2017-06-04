@@ -409,7 +409,7 @@ void desenha_betao(float vertices_parede[8][3])//, GLuint texture_id[], int id)
 	glMaterialfv(GL_FRONT, GL_SPECULAR, white);
 	glMaterialfv(GL_FRONT, GL_SHININESS, baca);
 
-	glEnable(GL_TEXTURE_2D);
+	//glEnable(GL_TEXTURE_2D);
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//glLoadIdentity();
 	glPushMatrix();

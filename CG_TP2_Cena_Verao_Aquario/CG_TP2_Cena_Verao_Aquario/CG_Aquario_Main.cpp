@@ -428,7 +428,7 @@ void display(void)
 	gluLookAt(camara_x, camara_y, camara_z, mira_x, mira_y, mira_z, 0, 0, 1);
 
 	desenha_sol(0, 0, 10000, 400);
-	//desenha_topo_agua(4);
+	desenha_topo_agua(4.1);
 	//desenha_areia(0);
 	desenha_eixos(6000);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, branco);
@@ -436,9 +436,10 @@ void display(void)
 	desenhar_parede(vertices_parede2, texture_id, 0);
 	desenhar_parede(vertices_parede3, texture_id, 0);
 	desenhar_parede(vertices_areia, texture_id, 1);
+	desenha_sala();
 	desenhar_parede(vertices_topo_agua, texture_id, 2);
 	//desenha_vidro(vertices_vidro);
-	desenha_sala();
+	
 
 	gera_valores_bolhas();
 
