@@ -53,6 +53,8 @@ void desenha_vidro(float vertices_parede[8][3]);
 void desenha_betao(float vertices_parede[8][3]);
 
 void desenha_sala();
+
+void desenha_peixes();
 //
 //	Fim do ficheiro de interface ///////////////////////////////////////////////
 //

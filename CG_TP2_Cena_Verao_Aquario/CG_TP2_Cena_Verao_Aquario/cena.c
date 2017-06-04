@@ -17,6 +17,8 @@
 #include <stdlib.h>
 #include <glut.h>
 #include "shapes.h"
+#include "animais.h"
+#include "modelos.h"
 //
 //	Definições /////////////////////////////////////////////////////////////////
 //
@@ -495,4 +497,36 @@ void desenha_sala()
 	desenha_betao(vertices_betao3);
 	desenha_betao(vertices_betao4);
 	desenha_betao(vertices_betao5);
+}
+
+void desenha_peixes()
+{
+	// Desenho de circulo (para ajuda ao posicionamento) e dos animais em si
+	/*desenhar_circulo(20);
+	desenhar_tubarao(1000, 9000, 200.0);
+	desenhar_goldfish(-1000, 9000, 200.0);*/
+
+
+
+	float posicao_salmon[] = { 0.0f, 9000.0f, 600.0f };
+	float posicao_manatee[] = { 1000.0f, 9000.0f, 600.0f };
+	float posicao_orca[] = { -1000.0f, 9000.0f, 600.0f };
+	float posicao_tiger_shark[] = { 2000.0f, 9000.0f, 600.0f };
+	float posicao_trout[] = { -2000.0f, 9000.0f, 600.0f };
+	float posicao_tuna[] = { 3000.0f, 9000.0f, 600.0f };
+	float posicao_shark[] = { -3000.0f, 9000.0f, 600.0f };
+	float posicao_goldfish[] = { 4000.0f, 9000.0f, 600.0f };
+
+	float rotacao_salmon[] = { 90.0f, 90.0f, 0.0f };
+	float material_salmon[] = { 0.8f, 0.0f, 0.0f, 1.0f };
+
+	desenhar_objeto_mat(salmon, posicao_salmon, rotacao_salmon, material_salmon);
+	desenhar_objeto_mat(manatee, posicao_manatee, rotacao_salmon, material_salmon);
+	desenhar_objeto_mat(orca, posicao_orca, rotacao_salmon, material_salmon);
+	desenhar_objeto_mat(tiger_shark, posicao_tiger_shark, rotacao_salmon, material_salmon);
+	desenhar_objeto_mat(trout, posicao_trout, rotacao_salmon, material_salmon);
+	desenhar_objeto_mat(tuna, posicao_tuna, rotacao_salmon, material_salmon);
+	desenhar_objeto_mat(shark, posicao_shark, rotacao_salmon, material_salmon);
+	desenhar_objeto_mat(goldfish, posicao_goldfish, rotacao_salmon, material_salmon);
+
 }

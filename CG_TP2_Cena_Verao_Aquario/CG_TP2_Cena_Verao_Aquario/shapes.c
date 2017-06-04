@@ -130,3 +130,15 @@ void desenha_plano(float z, float cor[4])
 	glPopMatrix();						         // recuperação da matriz de
 												 // transformação anterior
 }
+
+void desenhar_circulo(int radius)
+{
+	float diff[] = { 1.0, 0.0, 0.0, 1.0 };
+	float spec[] = { 1.0, 1.0, 1.0, 1.0 };
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, diff);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, spec);
+	glPushMatrix();
+	glTranslated(800.0, 800.0, 2600.0);
+	glutSolidSphere(radius, 36, 36);
+	glPopMatrix();
+}

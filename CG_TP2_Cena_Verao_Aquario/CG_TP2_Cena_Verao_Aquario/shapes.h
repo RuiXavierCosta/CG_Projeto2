@@ -28,6 +28,7 @@
 void DrawCircle(float cx, float cy, float r, int num_segments);
 void drawParaleliped(double vertecis[6][2]);
 void desenha_plano(float z, float cor[4]);
+void desenhar_circulo(int radius);
 
 //
 //	Fim do ficheiro de interface ///////////////////////////////////////////////

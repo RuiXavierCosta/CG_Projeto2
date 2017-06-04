@@ -70,12 +70,12 @@ void importar_modelos(void)
 void preparar_modelos()
 {
 	importar_modelos();
-	glmScale(goldfish, 400.0f);
-	glmScale(manatee, 400.0f);
-	glmScale(orca, 400.0f);
-	glmScale(salmon, 400.0f);
-	glmScale(shark, 400.0f);
-	glmScale(tiger_shark, 400.0f);
-	glmScale(trout, 400.0f);
-	glmScale(tuna, 400.0f);
+	glmScale(goldfish, 80.0f);
+	glmScale(manatee, 700.0f);
+	glmScale(orca, 1500.0f);
+	glmScale(salmon, 100.0f);
+	glmScale(shark, 800.0f);
+	glmScale(tiger_shark, 600.0f);
+	glmScale(trout, 100.0f);
+	glmScale(tuna, 250.0f);
 }

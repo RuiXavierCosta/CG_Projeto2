@@ -70,8 +70,8 @@ float base_bolhas7 = 4001.0;
 float const_at0 = 3.0;
 float const_at1 = 3.0;
 
-const float pos_bolhas_x[7] = { 0.0, 3000.0, -1000.0, 1000.0, 3000.0, -1000.0, 1000.0 };
-const float pos_bolhas_y[7] = { 0.0, -3000.0, 100.0, 100.0, 0.0, -3000.0, 100.0 };
+const float pos_bolhas_x[7] = { 0.0, 1000.0, -1000.0, 3000.0, -3000.0, -2000.0, 2000.0 };
+const float pos_bolhas_y[7] = { 9990, 9990, 9990, 9990, 9990, 9990, 9990 };
 
 int numero_bolhas = 100;
 float *array_x1;
@@ -391,18 +391,6 @@ void preparar_bolhas() {
 
 }
 
-void desenhar_circulo(int radius)
-{
-	float diff[] = { 1.0, 0.0, 0.0, 1.0 };
-	float spec[] = { 1.0, 1.0, 1.0, 1.0 };
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, diff);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, spec);
-	glPushMatrix();
-	glTranslated(800.0, 800.0, 2600.0);
-	glutSolidSphere(radius, 36, 36);
-	glPopMatrix();
-}
-
 void display(void)
 {
 	printf("Desenha...\n");						                // para controlo
@@ -442,24 +430,12 @@ void display(void)
 
 	gera_valores_bolhas();
 
-	// Desenho de circulo (para ajuda ao posicionamento) e dos animais em si
-	desenhar_circulo(20);
-	desenhar_tubarao(800.0, 800.0, 2500.0);
-	desenhar_goldfish(800.0, 800.0, 2400.0);
+	desenha_peixes();
 	
-	float posicao_salmon[] = { 0.0f, 0.0f, 2400.0f };
-	float rotacao_salmon[] = { 90.0f, 0.0f, 0.0f };
-	float material_salmon[] = { 0.8f, 0.0f, 0.0f, 1.0f };
-	desenhar_objeto_mat(salmon, posicao_salmon, rotacao_salmon, material_salmon);
-
-	float posicao_goldfish[] = { 0.0f, 0.0f, 2300.0f };
-	float rotacao_goldfish[] = { 90.0f, 0.0f, 0.0f };
-	float material_goldfish[] = { 0.0f, 0.0f, 0.6f, 1.0f };
-	
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture_id[1]);
+	//glEnable(GL_TEXTURE_2D);
+	//glBindTexture(GL_TEXTURE_2D, texture_id[1]);
 	//desenhar_objeto_tex(goldfish, posicao_goldfish, rotacao_goldfish);
-	glDisable(GL_TEXTURE_2D);
+	//glDisable(GL_TEXTURE_2D);
 
 	glutSwapBuffers();
 }
