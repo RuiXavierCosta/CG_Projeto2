@@ -84,7 +84,7 @@ void desenhar_objeto_mat(GLMmodel *objeto, float posicao[3], float rotacao[3], f
 	glTranslated(posicao[0], posicao[1], posicao[2]);
 	glRotatef(rotacao[0], 1.0, 0.0, 0.0);
 	glRotatef(rotacao[1], 0.0, 1.0, 0.0);
-	glRotatef(rotacao[2], 0.0, 0.0, 1.0);
+	glRotatef(rotacao[2], 1.0, 0.0, 1.0);
 
 	// Material
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
@@ -104,7 +104,7 @@ void abana_animal(float rotacao_animal[3], float velocidade_animal[4], float ori
 		i = 1;
 	}
 	else {
-		i = 1;
+		i = 2;
 	}
 
 	if (orientacao_animal[3] == 0.0) {

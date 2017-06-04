@@ -505,16 +505,10 @@ void tecla_premida(unsigned char tecla, int x, int y)
 	double nz = mira_z - camara_z;		   // vector de orientação da câmara (z)
 
 	double n = sqrt(nx*nx + ny*ny + nz*nz);	                      // norma do vector
-
-	double x_mira = mira_x;
-	double y_mira = mira_y;
-	double xc = camara_x;
-	double yc = camara_y;
-	double teta = k / 180 * 3.14159265 / 10;
-
 	nx /= n;						                                 // normalização
 	ny /= n;
 	nz /= n;
+
 
 	switch (tecla)
 	{
@@ -550,6 +544,35 @@ void tecla_premida(unsigned char tecla, int x, int y)
 		}
 			//camara_z -= nz*k;
 			//mira_z -= nz*k;
+		break;
+	case 'a':			  	                              // andar para a esquerda
+		if (camara_x - ny*k > -5000 && camara_x - ny*k < 5000)
+		{
+			camara_x -= ny*k;
+			mira_x -= ny*k;
+		}
+		if (camara_y + nx*k > 10000 && camara_y + nx*k< 11900)
+		{
+			camara_y += nx*k;
+			mira_y += nx*k;
+		}
+		//camara_z += nz*k;
+		//mira_z += nz*k;
+		break;
+
+	case 'd': //andar para a direita
+		if (camara_x += ny*k > -5000 && camara_x + ny*k < 5000)
+		{// andar para trás
+			camara_x += ny*k;
+			mira_x += ny*k;
+		}
+		if (camara_y - nx*k > 10000 && camara_y - nx*k< 11900)
+		{
+			camara_y -= nx*k;
+			mira_y -= nx*k;
+		}
+		//camara_z -= nz*k;
+		//mira_z -= nz*k;
 		break;
 
 	default:			  	             // por defeito, não há nenhuma ação

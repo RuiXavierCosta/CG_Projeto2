@@ -98,7 +98,7 @@ float vertices_betao5[8][3] = { // imaginando um cubo virado para a camara
 
 float posicao_salmon[] = { 200.0f, 300.0f, 3000.0f };
 float posicao_manatee[] = { 0.0f, 0.0f, 600.0f };
-float posicao_orca[] = { -1000.0f, 0.0f, 3600.0f };
+float posicao_orca[] = { -1000.0f, 0.0f, 3000.0f };
 float posicao_tiger_shark[] = { 2000.0f, 0.0f, 500.0f };
 float posicao_trout[] = { -2000.0f, 0.0f, 300.0f };
 float posicao_tuna[] = { 3000.0f, 0.0f, 2500.0f };
