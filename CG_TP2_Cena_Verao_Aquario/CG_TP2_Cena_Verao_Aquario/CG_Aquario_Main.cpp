@@ -439,7 +439,7 @@ void display(void)
 	desenhar_parede(vertices_parede2, texture_id, 0);
 	desenhar_parede(vertices_parede3, texture_id, 0);
 	desenhar_parede(vertices_areia, texture_id, 1);
-	desenha_vidro(vertices_vidro);
+	//desenha_vidro(vertices_vidro);
 	desenha_sala();
 
 	gera_valores_bolhas();
@@ -543,21 +543,33 @@ void tecla_premida(unsigned char tecla, int x, int y)
 		break;
 
 	case 'w':			  	                              // andar em frente
+		if (camara_x + nx*k > -5000 && camara_x + nx*k < 5000 )
+		{
 			camara_x += nx*k;
 			mira_x += nx*k;
+		}
+		if (camara_y + ny*k > 10000  && camara_y + ny*k< 11900)
+		{
 			camara_y += ny*k;
 			mira_y += ny*k;
-			camara_z += nz*k;
-			mira_z += nz*k;
+		}
+			//camara_z += nz*k;
+			//mira_z += nz*k;
 		break;
 
-	case 's':			  	                              // andar para trás
+	case 's':
+		if (camara_x + nx*k > -5000 && camara_x + nx*k < 5000)
+		{// andar para trás
 			camara_x -= nx*k;
 			mira_x -= nx*k;
+		}
+		if (camara_y + ny*k > 10000 && camara_y + ny*k< 11900)
+		{
 			camara_y -= ny*k;
 			mira_y -= ny*k;
-			camara_z -= nz*k;
-			mira_z -= nz*k;
+		}
+			//camara_z -= nz*k;
+			//mira_z -= nz*k;
 		break;
 
 	default:			  	             // por defeito, não há nenhuma ação
