@@ -50,13 +50,13 @@
     <ClCompile Include="cena.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="modelos.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="shapes.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tgaload.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modelos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
