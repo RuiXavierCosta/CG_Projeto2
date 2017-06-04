@@ -106,7 +106,6 @@ void preparar_modelos()
 {
 	for (int i = 0; i < 3; i++)
 	{
-
 		goldfish_rotation[i] = goldfish_orientation[i];
 		manatee_rotation[i] = manatee_orientation[i];
 		orca_rotation[i] = orca_orientation[i];
