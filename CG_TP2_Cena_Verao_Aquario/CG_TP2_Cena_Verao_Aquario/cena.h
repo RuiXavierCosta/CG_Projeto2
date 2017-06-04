@@ -28,6 +28,7 @@ extern const float bubble_blue[4];
 extern const float black[4];
 extern const float white[4];
 extern const float baca[];
+extern const float lisa[];
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //

@@ -517,16 +517,22 @@ void desenha_peixes()
 	float posicao_shark[] = { -3000.0f, 9000.0f, 600.0f };
 	float posicao_goldfish[] = { 4000.0f, 9000.0f, 600.0f };
 
-	float rotacao_salmon[] = { 90.0f, 90.0f, 0.0f };
-	float material_salmon[] = { 0.8f, 0.0f, 0.0f, 1.0f };
+	abana_animal(&salmon_rotation, salmon_speed, &salmon_orientation);
+	abana_animal(&manatee_rotation, manatee_speed, &manatee_orientation);
+	abana_animal(&orca_rotation, orca_speed, &orca_orientation);
+	abana_animal(&tiger_shark_rotation, tiger_shark_speed, &tiger_shark_orientation);
+	abana_animal(&trout_rotation, trout_speed, &trout_orientation);
+	abana_animal(&tuna_rotation, tuna_speed, &tuna_orientation);
+	abana_animal(&shark_rotation, shark_speed, &shark_orientation);
+	abana_animal(&goldfish_rotation, goldfish_speed, &goldfish_orientation);
 
-	desenhar_objeto_mat(salmon, posicao_salmon, rotacao_salmon, material_salmon);
-	desenhar_objeto_mat(manatee, posicao_manatee, rotacao_salmon, material_salmon);
-	desenhar_objeto_mat(orca, posicao_orca, rotacao_salmon, material_salmon);
-	desenhar_objeto_mat(tiger_shark, posicao_tiger_shark, rotacao_salmon, material_salmon);
-	desenhar_objeto_mat(trout, posicao_trout, rotacao_salmon, material_salmon);
-	desenhar_objeto_mat(tuna, posicao_tuna, rotacao_salmon, material_salmon);
-	desenhar_objeto_mat(shark, posicao_shark, rotacao_salmon, material_salmon);
-	desenhar_objeto_mat(goldfish, posicao_goldfish, rotacao_salmon, material_salmon);
+	desenhar_objeto_mat(salmon, posicao_salmon, salmon_rotation, salmon_color);
+	desenhar_objeto_mat(manatee, posicao_manatee, manatee_rotation, manatee_color);
+	desenhar_objeto_mat(orca, posicao_orca, orca_rotation, orca_color);
+	desenhar_objeto_mat(tiger_shark, posicao_tiger_shark, tiger_shark_rotation, tiger_shark_color);
+	desenhar_objeto_mat(trout, posicao_trout, trout_rotation, trout_color);
+	desenhar_objeto_mat(tuna, posicao_tuna, tuna_rotation, tuna_color);
+	desenhar_objeto_mat(shark, posicao_shark, shark_rotation, shark_color);
+	desenhar_objeto_mat(goldfish, posicao_goldfish, goldfish_rotation, goldfish_color);
 
 }

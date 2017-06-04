@@ -21,6 +21,41 @@
 // Exemplo da definição de uma constante
 #define PI    3.1415927
 
+float goldfish_color[4] = { 251.0 / 255.0 ,137.0 / 255.0 ,2.0 / 255.0, 1.0 };
+float manatee_color[4] = { 194.0 / 255.0, 181.0 / 255.0, 182.0 / 255.0, 1.0 };
+float orca_color[4] = { 18.0 / 255.0, 21.0 / 255.0, 26.0 / 255.0, 1.0 };
+float salmon_color[4] = { 202.0 / 255.0, 217.0 / 255.0, 185.0 / 255.0, 1.0 };
+float shark_color[4] = { 81.0 / 255.0, 98.0 / 255.0, 106.0 / 255.0, 1.0 };
+float tiger_shark_color[4] = { 93.0 / 255.0, 88.0 / 255.0, 69.0 / 255.0, 1.0 };
+float trout_color[4] = { 164.0 / 255.0, 120.0 / 255.0, 75.0 / 255.0, 1.0 };
+float tuna_color[4] = { 51.0 / 255.0, 126.0 / 255.0, 223.0 / 255.0, 1.0 };
+
+float goldfish_speed[4] = {10.0, 10.0, 10.0, 0.0};
+float manatee_speed[4] = {1.0, 1.0, 1.0, 1.0 };
+float orca_speed[4] = {3.0, 3.0, 5.0, 1.0 };
+float salmon_speed[4] = {13.0, 13.0, 13.0, 0.0 };
+float shark_speed[4] = {6.0,6.0, 2.0, 0.0 };
+float tiger_shark_speed[4] = {3.0, 3.0, 1.0, 0.0 };
+float trout_speed[4] = {12.0, 12.0, 12.0, 0.0 };
+float tuna_speed[4] = {8.0, 8.0, 5.0, 0.0 };
+
+float goldfish_rotation[3] = { 90.0, 90.0, 0.0 };
+float manatee_rotation[3] = { 90.0, 90.0, 0.0 };
+float orca_rotation[3] = { 90.0, 90.0, 0.0 };
+float salmon_rotation[3] = { 90.0, 90.0, 0.0 };
+float shark_rotation[3] = { 90.0, 90.0, 0.0 };
+float tiger_shark_rotation[3] = { 90.0, 90.0, 0.0 };
+float trout_rotation[3] = { 90.0, 90.0, 0.0 };
+float tuna_rotation[3] = { 90.0, 90.0, 0.0 };
+
+float goldfish_orientation[4] = { 90.0, 90.0, 0.0, 0 };
+float manatee_orientation[4] = { 90.0, 90.0, 0.0, 0 };
+float orca_orientation[4] = { 90.0, 90.0, 0.0, 0 };
+float salmon_orientation[4] = { 90.0, 90.0, 0.0, 0 };
+float shark_orientation[4] = { 90.0, 90.0, 0.0, 0 };
+float tiger_shark_orientation[4] = { 90.0, 90.0, 0.0, 0 };
+float trout_orientation[4] = { 90.0, 90.0, 0.0, 0 };
+float tuna_orientation[4] = { 90.0, 90.0, 0.0, 0 };
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //

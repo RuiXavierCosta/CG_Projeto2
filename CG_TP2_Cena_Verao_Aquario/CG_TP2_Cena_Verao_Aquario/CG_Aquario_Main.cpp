@@ -71,7 +71,7 @@ float const_at0 = 3.0;
 float const_at1 = 3.0;
 
 const float pos_bolhas_x[7] = { 0.0, 1000.0, -1000.0, 3000.0, -3000.0, -2000.0, 2000.0 };
-const float pos_bolhas_y[7] = { 9990, 9990, 9990, 9990, 9990, 9990, 9990 };
+const float pos_bolhas_y[7] = { 9880, 9880, 9880, 9880, 9880, 9880, 9880 };
 
 int numero_bolhas = 100;
 float *array_x1;

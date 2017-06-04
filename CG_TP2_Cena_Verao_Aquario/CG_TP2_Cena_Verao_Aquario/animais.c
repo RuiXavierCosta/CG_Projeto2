@@ -14,7 +14,7 @@
 //	Bibliotecas a incluir //////////////////////////////////////////////////////
 //
 #include "animais.h"
-
+#include "cena.h"
 //
 //	Definições /////////////////////////////////////////////////////////////////
 //
@@ -87,8 +87,41 @@ void desenhar_objeto_mat(GLMmodel *objeto, float posicao[3], float rotacao[3], f
 
 	// Material
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, black);
+	glMaterialfv(GL_FRONT, GL_SHININESS, lisa);
 
 	// Desenho
 	glmDraw(objeto, GLM_SMOOTH);
 	glPopMatrix();
+}
+
+void abana_animal(float rotacao_animal[3], float velocidade_animal[4], float orientacao_animal[4])
+{
+	
+	int i = 0;
+	if (velocidade_animal[3] == 0.0) {
+		i = 1;
+	}
+	else {
+		i = 1;
+	}
+
+	if (orientacao_animal[3] == 0.0) {
+		if (rotacao_animal[i] <= orientacao_animal[i] + 15.0) {
+			rotacao_animal[i] += velocidade_animal[i] / 10.0;
+		}
+		else {
+			orientacao_animal[3] = 1.0;
+		}
+	}
+
+	if (orientacao_animal[3] == 1.0) {
+		if (rotacao_animal[i] >= orientacao_animal[i] - 15.0) {
+			rotacao_animal[i] -= velocidade_animal[i] / 10.0;
+		}
+		else {
+			orientacao_animal[3] = 0.0;
+		}
+	}
+
 }
