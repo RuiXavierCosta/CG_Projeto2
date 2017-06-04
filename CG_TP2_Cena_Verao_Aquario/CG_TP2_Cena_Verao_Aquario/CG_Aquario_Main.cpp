@@ -43,9 +43,9 @@ double razao_aspeto = 1;		   // razão de aspecto da janela de visualização
 double limite_z_anterior = 1;			            // plano de recorte anterior
 double limite_z_posterior = 25000;		           // plano de recorte posterior
 
-double camara_x = 1500;					                // posição da câmara (x)
-double camara_y = 1500;					                // posição da câmara (y)
-double camara_z = 2750;					                // posição da câmara (z)
+double camara_x = 0;					                // posição da câmara (x)
+double camara_y = 11000;					                // posição da câmara (y)
+double camara_z = 400;					                // posição da câmara (z)
 
 double mira_x = 0;				        // direção de visualização da câmara (x)
 double mira_y = 0;				        // direção de visualização da câmara (y)
@@ -57,7 +57,8 @@ double campo_visao_y = 50;		                          // campo de visão em y
 double map_border = 2000.0;
 
 														  // Posição da fonte de iluminação na origem
-const float pos_luz[] = { 0.0, 0.0, 0.0, 1.0 };
+const float pos_luz0[] = { 0.0, 0.0, 0.0, 1.0 };
+const float pos_luz1[] = { 0.0, 0.0, 0.0, 1.0 };
 float base_bolhas1 = 4001.0;
 float base_bolhas2 = 4001.0;
 float base_bolhas3 = 4001.0;
@@ -67,6 +68,7 @@ float base_bolhas6 = 4001.0;
 float base_bolhas7 = 4001.0;
 					  // Fator de atenuação da luz
 float const_at = 3.0;
+float const_at1 = 1.0;
 
 const float pos_bolhas_x[7] = { 0.0, 3000.0, -1000.0, 1000.0, 3000.0, -1000.0, 1000.0 };
 const float pos_bolhas_y[7] = { 0.0, -3000.0, 100.0, 100.0, 0.0, -3000.0, 100.0 };
@@ -411,7 +413,16 @@ void display(void)
 	// Posicionamento da luz
 	glPushMatrix();
 		glTranslatef(0.0, 0.0, 5000.0);
-		glLightfv(GL_LIGHT0, GL_POSITION, pos_luz);
+		glLightfv(GL_LIGHT0, GL_POSITION, pos_luz0);
+	glPopMatrix();
+
+	glLightf(GL_LIGHT1, GL_AMBIENT, const_at1);
+
+	glPushMatrix();
+		glTranslatef(0.0, 0.0, 0.0);
+		glLightfv(GL_LIGHT1, GL_POSITION, pos_luz1);
+		glutSolidSphere(100.0 / 2,
+			16, 16);
 	glPopMatrix();
 
 
@@ -449,7 +460,7 @@ void display(void)
 	
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture_id[1]);
-	desenhar_objeto_tex(goldfish, posicao_goldfish, rotacao_goldfish);
+	//desenhar_objeto_tex(goldfish, posicao_goldfish, rotacao_goldfish);
 	glDisable(GL_TEXTURE_2D);
 
 	glutSwapBuffers();
@@ -685,6 +696,11 @@ void InitGL()
 
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, white);
+
+	glEnable(GL_LIGHT1);
+
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, white);
 
 	glMatrixMode(GL_MODELVIEW);
 

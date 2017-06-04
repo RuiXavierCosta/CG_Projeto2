@@ -25,7 +25,7 @@
 
 const float light_blue[4] = { 0.4156862745098039,  0.7803921568627451, 0.9176470588235294, 0.6 };
 const float sand_yellow[4] = { 0.831, 0.765, 0.416, 1.0 };
-const float transparent_glass[4] = { 0.7,  0.7, 0.7, 0.01 };
+const float transparent_glass[4] = { 0.7,  0.7, 0.7, 0.2 };
 const float concrete[4] = { 0.2,  0.2, 0.2, 1.0 };
 const float sun_yellow[4] = { 0.9607843137254902,  0.9941176470588235, 0.0196078431372549, 1.0 };
 const float bubble_blue[4] = { 0.4, 0.4, 1.0, 0.1 };
@@ -67,29 +67,31 @@ float vertices_betao3[8][3] = { // imaginando um cubo virado para a camara
 	{ 50.0, 120, 0.0 }, // canto inferior direito frente
 	{ 50.0, 120.1, 0.0 }, // canto inferior direito tras
 	{ -50.0, 120.1, 0.0 }, // canto inferior esquerdo tras
-	{ -50.0, 120.1, 0.0 }, // canto inferior esquerdo frente
+	{ -50.0, 120, 0.0 }, // canto inferior esquerdo frente
 };
 
+// parede betao baixo
 float vertices_betao4[8][3] = { // imaginando um cubo virado para a camara
-	{ 99.0, 100, 35.0 }, // canto superior direito frente
-	{ 99, 99, 35.0 }, // canto superior direito tras
-	{ -99, 99, 35.0 }, // canto superior esquerdo tras
-	{ -99, 100, 35.0 }, // canto superior esquerdo frente
-	{ 99, 100, 0.0 }, // canto inferior direito frente
-	{ 99, 99, 0.0 }, // canto inferior direito tras
-	{ -99, 99, 0.0 }, // canto inferior esquerdo tras
-	{ -99, 100, 0.0 }, // canto inferior esquerdo frente
+	{ 50.0, 100, 0.0 }, // canto superior direito frente
+	{ 50, 120, 0.0 }, // canto superior direito tras
+	{ -50, 120, 0.0 }, // canto superior esquerdo tras
+	{ -50, 100, 0.0 }, // canto superior esquerdo frente
+	{ 50, 100, -0.1 }, // canto inferior direito frente
+	{ 50, 120, -0.1 }, // canto inferior direito tras
+	{ -50, 120, -0.1 }, // canto inferior esquerdo tras
+	{ -50, 100, -0.1 }, // canto inferior esquerdo frente
 };
 
+//parede betao topo
 float vertices_betao5[8][3] = { // imaginando um cubo virado para a camara
-	{ 99.0, 100, 35.0 }, // canto superior direito frente
-	{ 99, 99, 35.0 }, // canto superior direito tras
-	{ -99, 99, 35.0 }, // canto superior esquerdo tras
-	{ -99, 100, 35.0 }, // canto superior esquerdo frente
-	{ 99, 100, 0.0 }, // canto inferior direito frente
-	{ 99, 99, 0.0 }, // canto inferior direito tras
-	{ -99, 99, 0.0 }, // canto inferior esquerdo tras
-	{ -99, 100, 0.0 }, // canto inferior esquerdo frente
+	{ 50.0, 100, 20.0 }, // canto superior direito frente
+	{ 50, 120, 20.0 }, // canto superior direito tras
+	{ -50, 120, 20.0 }, // canto superior esquerdo tras
+	{ -50, 100, 20.0 }, // canto superior esquerdo frente
+	{ 50, 100, 20.1 }, // canto inferior direito frente
+	{ 50, 120, 20.1 }, // canto inferior direito tras
+	{ -50, 120, 20.1 }, // canto inferior esquerdo tras
+	{ -50, 100, 20.1 }, // canto inferior esquerdo frente
 };
 //
 //	Funções ////////////////////////////////////////////////////////////////////
@@ -280,24 +282,24 @@ void desenhar_parede(float vertices_parede[8][3], GLuint texture_id[], int id)
 //	* 3: 
 //	* 4: 
 //	* 5: 
-void desenha_parede_2d(float vertices[6], GLuint texture_id[], int id)
-{
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture_id[id]);
-	glBegin(GL_POLYGON);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(143, 0, 223);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(3000, 0, 223);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(3000, 0, 1500);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(143, 0, 1500);
-	glEnd();
-	glDisable(GL_TEXTURE_2D);
-}
+//void desenha_parede_2d(float vertices[6], GLuint texture_id[], int id)
+//{
+//	glEnable(GL_TEXTURE_2D);
+//	glBindTexture(GL_TEXTURE_2D, texture_id[id]);
+//	glBegin(GL_POLYGON);
+//	glTexCoord2f(0.0f, 1.0f); glVertex3f(143, 0, 223);
+//	glTexCoord2f(1.0f, 1.0f); glVertex3f(3000, 0, 223);
+//	glTexCoord2f(1.0f, 0.0f); glVertex3f(3000, 0, 1500);
+//	glTexCoord2f(0.0f, 0.0f); glVertex3f(143, 0, 1500);
+//	glEnd();
+//	glDisable(GL_TEXTURE_2D);
+//}
 
 void desenha_vidro(float vertices_parede[8][3])//, GLuint texture_id[], int id)
 {
-	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, transparent_glass);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, transparent_glass);
-	glMaterialfv(GL_FRONT, GL_SHININESS, baca);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, transparent_glass);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, white);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, lisa);
 
 	glEnable(GL_TEXTURE_2D);
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -392,7 +394,8 @@ void desenha_vidro(float vertices_parede[8][3])//, GLuint texture_id[], int id)
 void desenha_betao(float vertices_parede[8][3])//, GLuint texture_id[], int id)
 {
 	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, concrete);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, concrete);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, concrete);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, white);
 	glMaterialfv(GL_FRONT, GL_SHININESS, baca);
 
 	glEnable(GL_TEXTURE_2D);
