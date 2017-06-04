@@ -50,7 +50,7 @@ float tuna_rotation[3];
 
 float goldfish_orientation[4] = { 90.0, 80.0, 0.0, 0 };
 float manatee_orientation[4] = { 90.0, 30.0, 0.0, 0 };
-float orca_orientation[4] = { 90.0, 45.0, 0.0, 0 };
+float orca_orientation[4] = { 90.0, 73.0, 0.0, 0 };
 float salmon_orientation[4] = { 90.0, 23.0, 0.0, 0 };
 float shark_orientation[4] = { 90.0, 42.0, 0.0, 0 };
 float tiger_shark_orientation[4] = { 90.0, 71.0, 0.0, 0 };
