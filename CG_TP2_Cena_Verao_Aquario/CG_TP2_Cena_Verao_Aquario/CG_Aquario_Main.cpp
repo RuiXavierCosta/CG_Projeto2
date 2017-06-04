@@ -32,6 +32,9 @@ extern "C" {
 
 double ocean_blue[3] = { 0.0117647058823529, 0.4431372549019608, 0.6117647058823529 };
 
+float diffuse_default[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+float branco[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
 int largura = 1024;					  // largura da nossa janela de visualização
 int altura = 768;					   // altura da nossa janela de visualização
 
@@ -409,6 +412,7 @@ void display(void)
 	desenha_topo_agua(4);
 	//desenha_areia(0);
 	desenha_eixos(6000);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, branco);
 	desenhar_parede(vertices_parede1, texture_id, 0);
 	desenhar_parede(vertices_parede2, texture_id, 0);
 	desenhar_parede(vertices_parede3, texture_id, 0);
@@ -428,7 +432,11 @@ void display(void)
 	float posicao_goldfish[] = { 0.0f, 0.0f, 2300.0f };
 	float rotacao_goldfish[] = { 90.0f, 0.0f, 0.0f };
 	float material_goldfish[] = { 0.0f, 0.0f, 0.6f, 1.0f };
-	desenhar_objeto_mat(goldfish, posicao_goldfish, rotacao_goldfish, material_goldfish);
+	
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture_id[1]);
+	desenhar_objeto_tex(goldfish, posicao_goldfish, rotacao_goldfish);
+	glDisable(GL_TEXTURE_2D);
 
 	glutSwapBuffers();
 }

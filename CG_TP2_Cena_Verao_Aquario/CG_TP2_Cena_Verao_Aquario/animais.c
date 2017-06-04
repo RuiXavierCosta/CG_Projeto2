@@ -62,6 +62,20 @@ void desenhar_objeto(GLMmodel *objeto, float posicao[3], float rotacao[3])
 	glPopMatrix();
 }
 
+void desenhar_objeto_tex(GLMmodel *objeto, float posicao[3], float rotacao[3])
+{
+	glPushMatrix();
+	// Posicionamento
+	glTranslatef(posicao[0], posicao[1], posicao[2]);
+	glRotatef(rotacao[0], 1.0, 0.0, 0.0);
+	glRotatef(rotacao[1], 0.0, 1.0, 0.0);
+	glRotatef(rotacao[2], 0.0, 0.0, 1.0);
+
+	// Desenho
+	glmDraw(objeto, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE);
+	glPopMatrix();
+}
+
 void desenhar_objeto_mat(GLMmodel *objeto, float posicao[3], float rotacao[3], float mat_diffuse[4])
 {
 	glPushMatrix();
