@@ -32,9 +32,9 @@ float tuna_color[4] = { 51.0 / 255.0, 126.0 / 255.0, 223.0 / 255.0, 1.0 };
 
 float goldfish_speed[4] = {10.0, 10.0, 10.0, 0.0};
 float manatee_speed[4] = {2.0, 2.0, 2.0, 1.0 };
-float orca_speed[4] = {9.0, 9.0, 8.0, 1.0 };
+float orca_speed[4] = {11.0, 11.0, 8.0, 1.0 };
 float salmon_speed[4] = {13.0, 13.0, 13.0, 0.0 };
-float shark_speed[4] = { 8.0, 8.0, 4.0, 0.0 };
+float shark_speed[4] = { 4.0, 4.0, 4.0, 0.0 };
 float tiger_shark_speed[4] = { 3.0, 3.0, 1.0, 0.0 };
 float trout_speed[4] = {12.0, 12.0, 12.0, 0.0 };
 float tuna_speed[4] = {8.0, 8.0, 5.0, 0.0 };

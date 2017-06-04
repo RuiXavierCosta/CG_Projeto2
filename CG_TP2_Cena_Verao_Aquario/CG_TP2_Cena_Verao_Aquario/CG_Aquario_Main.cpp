@@ -41,7 +41,7 @@ int altura = 768;					   // altura da nossa janela de visualização
 double razao_aspeto = 1;		   // razão de aspecto da janela de visualização
 
 double limite_z_anterior = 1;			            // plano de recorte anterior
-double limite_z_posterior = 25000;		           // plano de recorte posterior
+double limite_z_posterior = 30000;		           // plano de recorte posterior
 
 double camara_x = 0;					                // posição da câmara (x)
 double camara_y = 11000;					                // posição da câmara (y)

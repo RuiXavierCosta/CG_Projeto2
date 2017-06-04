@@ -137,16 +137,19 @@ void move_animal(float posicao_animal[3], float velocidade_animal[4], float orie
 	if (posicao_animal[0] + inc_x > 9000 || posicao_animal[0] + inc_x < -9000)
 	{
 		orientacao_animal[1] = -orientacao_animal[1];
+		inc_x = velocidade_animal[0] * cos((orientacao_animal[1] - 90)*rad);
 	}
 
 	if (posicao_animal[1] + inc_y > 9000 || posicao_animal[1] + inc_y < -9000)
 	{
-		orientacao_animal[1] = -orientacao_animal[1];
+		orientacao_animal[1] += 180;
+		inc_y = velocidade_animal[1] * sin((orientacao_animal[1] - 90)*rad);
 	}
 
 	if (posicao_animal[2] + inc_z > 4000 || posicao_animal[2] + inc_x < 100)
 	{
 		orientacao_animal[2] = -orientacao_animal[2];
+		inc_z = velocidade_animal[2] * (orientacao_animal[2]) / 360.0;
 	}
 
 	posicao_animal[0] += inc_x;
