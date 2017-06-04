@@ -207,3 +207,24 @@ void desenhar_parede(float vertices_parede[8][3], GLuint texture_id[], int id)
 
 	glFlush();
 }
+
+//	Desenha parede 2D
+//	* vertices[6]
+//	* 0: 
+//	* 1: 
+//	* 2: 
+//	* 3: 
+//	* 4: 
+//	* 5: 
+void desenha_parede_2d(float vertices[6], GLuint texture_id[], int id)
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture_id[id]);
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(143, 0, 223);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(3000, 0, 223);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(3000, 0, 1500);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(143, 0, 1500);
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
