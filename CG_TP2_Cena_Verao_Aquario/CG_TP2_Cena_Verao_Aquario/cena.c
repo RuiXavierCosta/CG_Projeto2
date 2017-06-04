@@ -25,12 +25,72 @@
 
 const float light_blue[4] = { 0.4156862745098039,  0.7803921568627451, 0.9176470588235294, 0.6 };
 const float sand_yellow[4] = { 0.831, 0.765, 0.416, 1.0 };
+const float transparent_glass[4] = { 0.7,  0.7, 0.7, 0.01 };
+const float concrete[4] = { 0.2,  0.2, 0.2, 1.0 };
 const float sun_yellow[4] = { 0.9607843137254902,  0.9941176470588235, 0.0196078431372549, 1.0 };
 const float bubble_blue[4] = { 0.4, 0.4, 1.0, 0.1 };
 const float black[4] = { 0.0, 0.0, 0.0, 1.0 };
 const float white[4] = { 1.0, 1.0, 1.0, 1.0 };
 const int baca[] = { 0 };
 const int lisa[] = { 128 };
+
+// parede betao direita
+float vertices_betao1[8][3] = { // imaginando um cubo virado para a camara
+	{ -50.0, 100, 20.0 }, // canto superior direito frente
+	{ -50.1, 100, 20.0 }, // canto superior direito tras
+	{ -50.1, 120, 20.0 }, // canto superior esquerdo tras
+	{ -50.0, 120, 20.0 }, // canto superior esquerdo frente
+	{ -50.0, 100, 0.0 }, // canto inferior direito frente
+	{ -50.1, 100, 0.0 }, // canto inferior direito tras
+	{ -50.1, 120, 0.0 }, // canto inferior esquerdo tras
+	{ -50.0, 120, 0.0 }, // canto inferior esquerdo frente
+};
+
+//parede betao esquerda
+float vertices_betao2[8][3] = { // imaginando um cubo virado para a camara
+	{ 50.0, 100, 20.0 }, // canto superior direito frente
+	{ 50.1, 100, 20.0 }, // canto superior direito tras
+	{ 50.1, 120, 20.0 }, // canto superior esquerdo tras
+	{ 50.0, 120, 20.0 }, // canto superior esquerdo frente
+	{ 50.0, 100, 0.0 }, // canto inferior direito frente
+	{ 50.1, 100, 0.0 }, // canto inferior direito tras
+	{ 50.1, 120, 0.0 }, // canto inferior esquerdo tras
+	{ 50.0, 120, 0.0 }, // canto inferior esquerdo frente
+};
+
+// parede betao tras
+float vertices_betao3[8][3] = { // imaginando um cubo virado para a camara
+	{ 50.0, 120, 20.0 }, // canto superior direito frente
+	{ 50.0, 120.1, 20.0 }, // canto superior direito tras
+	{ -50.0, 120.1, 20.0 }, // canto superior esquerdo tras
+	{ -50.0, 120, 20.0 }, // canto superior esquerdo frente
+	{ 50.0, 120, 0.0 }, // canto inferior direito frente
+	{ 50.0, 120.1, 0.0 }, // canto inferior direito tras
+	{ -50.0, 120.1, 0.0 }, // canto inferior esquerdo tras
+	{ -50.0, 120.1, 0.0 }, // canto inferior esquerdo frente
+};
+
+float vertices_betao4[8][3] = { // imaginando um cubo virado para a camara
+	{ 99.0, 100, 35.0 }, // canto superior direito frente
+	{ 99, 99, 35.0 }, // canto superior direito tras
+	{ -99, 99, 35.0 }, // canto superior esquerdo tras
+	{ -99, 100, 35.0 }, // canto superior esquerdo frente
+	{ 99, 100, 0.0 }, // canto inferior direito frente
+	{ 99, 99, 0.0 }, // canto inferior direito tras
+	{ -99, 99, 0.0 }, // canto inferior esquerdo tras
+	{ -99, 100, 0.0 }, // canto inferior esquerdo frente
+};
+
+float vertices_betao5[8][3] = { // imaginando um cubo virado para a camara
+	{ 99.0, 100, 35.0 }, // canto superior direito frente
+	{ 99, 99, 35.0 }, // canto superior direito tras
+	{ -99, 99, 35.0 }, // canto superior esquerdo tras
+	{ -99, 100, 35.0 }, // canto superior esquerdo frente
+	{ 99, 100, 0.0 }, // canto inferior direito frente
+	{ 99, 99, 0.0 }, // canto inferior direito tras
+	{ -99, 99, 0.0 }, // canto inferior esquerdo tras
+	{ -99, 100, 0.0 }, // canto inferior esquerdo frente
+};
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
@@ -231,4 +291,205 @@ void desenha_parede_2d(float vertices[6], GLuint texture_id[], int id)
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(143, 0, 1500);
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
+}
+
+void desenha_vidro(float vertices_parede[8][3])//, GLuint texture_id[], int id)
+{
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, transparent_glass);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, transparent_glass);
+	glMaterialfv(GL_FRONT, GL_SHININESS, baca);
+
+	glEnable(GL_TEXTURE_2D);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glLoadIdentity();
+	glPushMatrix();
+	glScaled(100.0, 100.0, 100.0);
+
+	// define qual das texturas usar
+	//glBindTexture(GL_TEXTURE_2D, texture_id[id]);
+
+	/*
+	-----
+	*/
+	// [0] canto superior direito frente
+	// [1] canto superior direito tras
+	// [2] canto superior esquerdo tras
+	// [3] canto superior esquerdo frente
+	// [4] canto inferior direito frente
+	// [5] canto inferior direito tras
+	// [6] canto inferior esquerdo tras
+	// [7] canto inferior esquerdo frente
+
+	glBegin(GL_QUADS);
+	// Front Face
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[7][0], vertices_parede[7][1], vertices_parede[7][2]);
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[3][0], vertices_parede[3][1], vertices_parede[3][2]);
+	// glTexCoord2f(1.0f, 0.0f); 
+	glVertex3f(vertices_parede[0][0], vertices_parede[0][1], vertices_parede[0][2]);
+	// glTexCoord2f(1.0f, 1.0f); 
+	glVertex3f(vertices_parede[4][0], vertices_parede[4][1], vertices_parede[4][2]);
+
+	// Back Face
+	// glTexCoord2f(1.0f, 1.0f); 
+	glVertex3f(vertices_parede[6][0], vertices_parede[6][1], vertices_parede[6][2]);
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[5][0], vertices_parede[5][1], vertices_parede[5][2]);
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[1][0], vertices_parede[1][1], vertices_parede[1][2]);
+	// glTexCoord2f(1.0f, 0.0f); 
+	glVertex3f(vertices_parede[2][0], vertices_parede[2][1], vertices_parede[2][2]);
+
+	// Top Face
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[2][0], vertices_parede[2][1], vertices_parede[2][2]);
+	// glTexCoord2f(1.0f, 0.0f); 
+	glVertex3f(vertices_parede[1][0], vertices_parede[1][1], vertices_parede[1][2]);
+	// glTexCoord2f(1.0f, 1.0f); 
+	glVertex3f(vertices_parede[0][0], vertices_parede[0][1], vertices_parede[0][2]);
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[3][0], vertices_parede[3][1], vertices_parede[3][2]);
+
+	// Bottom Face
+	// glTexCoord2f(1.0f, 0.0f);
+	glVertex3f(vertices_parede[6][0], vertices_parede[6][1], vertices_parede[6][2]);
+	// glTexCoord2f(1.0f, 1.0f); 
+	glVertex3f(vertices_parede[7][0], vertices_parede[7][1], vertices_parede[7][2]);
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[4][0], vertices_parede[4][1], vertices_parede[4][2]);
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[5][0], vertices_parede[5][1], vertices_parede[5][2]);
+
+	// Right Face
+	// glTexCoord2f(1.0f, 0.0f); 
+	glVertex3f(vertices_parede[5][0], vertices_parede[5][1], vertices_parede[5][2]);
+	// glTexCoord2f(1.0f, 1.0f);
+	glVertex3f(vertices_parede[4][0], vertices_parede[4][1], vertices_parede[4][2]);
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[0][0], vertices_parede[0][1], vertices_parede[0][2]);
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[1][0], vertices_parede[1][1], vertices_parede[1][2]);
+
+	// Left Face
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[6][0], vertices_parede[6][1], vertices_parede[6][2]);
+	// glTexCoord2f(1.0f, 0.0f); 
+	glVertex3f(vertices_parede[2][0], vertices_parede[2][1], vertices_parede[2][2]);
+	// glTexCoord2f(1.0f, 1.0f); 
+	glVertex3f(vertices_parede[3][0], vertices_parede[3][1], vertices_parede[3][2]);
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[7][0], vertices_parede[7][1], vertices_parede[7][2]);
+	glEnd();
+
+	glPopMatrix();
+
+	//glDisable(GL_TEXTURE_2D);
+
+	glFlush();
+}
+
+void desenha_betao(float vertices_parede[8][3])//, GLuint texture_id[], int id)
+{
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, concrete);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, concrete);
+	glMaterialfv(GL_FRONT, GL_SHININESS, baca);
+
+	glEnable(GL_TEXTURE_2D);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glLoadIdentity();
+	glPushMatrix();
+	glScaled(100.0, 100.0, 100.0);
+
+	// define qual das texturas usar
+	//glBindTexture(GL_TEXTURE_2D, texture_id[id]);
+
+	/*
+	-----
+	*/
+	// [0] canto superior direito frente
+	// [1] canto superior direito tras
+	// [2] canto superior esquerdo tras
+	// [3] canto superior esquerdo frente
+	// [4] canto inferior direito frente
+	// [5] canto inferior direito tras
+	// [6] canto inferior esquerdo tras
+	// [7] canto inferior esquerdo frente
+
+	glBegin(GL_QUADS);
+	// Front Face
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[7][0], vertices_parede[7][1], vertices_parede[7][2]);
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[3][0], vertices_parede[3][1], vertices_parede[3][2]);
+	// glTexCoord2f(1.0f, 0.0f); 
+	glVertex3f(vertices_parede[0][0], vertices_parede[0][1], vertices_parede[0][2]);
+	// glTexCoord2f(1.0f, 1.0f); 
+	glVertex3f(vertices_parede[4][0], vertices_parede[4][1], vertices_parede[4][2]);
+
+	// Back Face
+	// glTexCoord2f(1.0f, 1.0f); 
+	glVertex3f(vertices_parede[6][0], vertices_parede[6][1], vertices_parede[6][2]);
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[5][0], vertices_parede[5][1], vertices_parede[5][2]);
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[1][0], vertices_parede[1][1], vertices_parede[1][2]);
+	// glTexCoord2f(1.0f, 0.0f); 
+	glVertex3f(vertices_parede[2][0], vertices_parede[2][1], vertices_parede[2][2]);
+
+	// Top Face
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[2][0], vertices_parede[2][1], vertices_parede[2][2]);
+	// glTexCoord2f(1.0f, 0.0f); 
+	glVertex3f(vertices_parede[1][0], vertices_parede[1][1], vertices_parede[1][2]);
+	// glTexCoord2f(1.0f, 1.0f); 
+	glVertex3f(vertices_parede[0][0], vertices_parede[0][1], vertices_parede[0][2]);
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[3][0], vertices_parede[3][1], vertices_parede[3][2]);
+
+	// Bottom Face
+	// glTexCoord2f(1.0f, 0.0f);
+	glVertex3f(vertices_parede[6][0], vertices_parede[6][1], vertices_parede[6][2]);
+	// glTexCoord2f(1.0f, 1.0f); 
+	glVertex3f(vertices_parede[7][0], vertices_parede[7][1], vertices_parede[7][2]);
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[4][0], vertices_parede[4][1], vertices_parede[4][2]);
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[5][0], vertices_parede[5][1], vertices_parede[5][2]);
+
+	// Right Face
+	// glTexCoord2f(1.0f, 0.0f); 
+	glVertex3f(vertices_parede[5][0], vertices_parede[5][1], vertices_parede[5][2]);
+	// glTexCoord2f(1.0f, 1.0f);
+	glVertex3f(vertices_parede[4][0], vertices_parede[4][1], vertices_parede[4][2]);
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[0][0], vertices_parede[0][1], vertices_parede[0][2]);
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[1][0], vertices_parede[1][1], vertices_parede[1][2]);
+
+	// Left Face
+	// glTexCoord2f(0.0f, 0.0f); 
+	glVertex3f(vertices_parede[6][0], vertices_parede[6][1], vertices_parede[6][2]);
+	// glTexCoord2f(1.0f, 0.0f); 
+	glVertex3f(vertices_parede[2][0], vertices_parede[2][1], vertices_parede[2][2]);
+	// glTexCoord2f(1.0f, 1.0f); 
+	glVertex3f(vertices_parede[3][0], vertices_parede[3][1], vertices_parede[3][2]);
+	// glTexCoord2f(0.0f, 1.0f); 
+	glVertex3f(vertices_parede[7][0], vertices_parede[7][1], vertices_parede[7][2]);
+	glEnd();
+
+	glPopMatrix();
+
+	//glDisable(GL_TEXTURE_2D);
+
+	glFlush();
+}
+
+void desenha_sala()
+{
+	desenha_betao(vertices_betao1);
+	desenha_betao(vertices_betao2);
+	desenha_betao(vertices_betao3);
+	desenha_betao(vertices_betao4);
+	desenha_betao(vertices_betao5);
 }

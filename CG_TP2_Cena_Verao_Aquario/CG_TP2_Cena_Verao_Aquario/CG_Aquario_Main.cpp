@@ -41,7 +41,7 @@ int altura = 768;					   // altura da nossa janela de visualização
 double razao_aspeto = 1;		   // razão de aspecto da janela de visualização
 
 double limite_z_anterior = 1;			            // plano de recorte anterior
-double limite_z_posterior = 20000;		           // plano de recorte posterior
+double limite_z_posterior = 25000;		           // plano de recorte posterior
 
 double camara_x = 1500;					                // posição da câmara (x)
 double camara_y = 1500;					                // posição da câmara (y)
@@ -149,6 +149,17 @@ float vertices_areia[8][3] = { // imaginando um cubo virado para a camara
 	{ -100, -100, -1.0 }, // canto inferior direito tras
 	{ 100, -100, -1.0 }, // canto inferior esquerdo tras
 	{ 100, 100, -1.0 }, // canto inferior esquerdo frente
+};
+
+float vertices_vidro[8][3] = { // imaginando um cubo virado para a camara
+	{ 99.0, 100, 35.0 }, // canto superior direito frente
+	{ 99, 99, 35.0 }, // canto superior direito tras
+	{ -99, 99, 35.0 }, // canto superior esquerdo tras
+	{ -99, 100, 35.0 }, // canto superior esquerdo frente
+	{ 99, 100, 0.0 }, // canto inferior direito frente
+	{ 99, 99, 0.0 }, // canto inferior direito tras
+	{ -99, 99, 0.0 }, // canto inferior esquerdo tras
+	{ -99, 100, 0.0 }, // canto inferior esquerdo frente
 };
 
 // Quantidade máxima de texturas a serem usadas no programa
@@ -417,6 +428,9 @@ void display(void)
 	desenhar_parede(vertices_parede2, texture_id, 0);
 	desenhar_parede(vertices_parede3, texture_id, 0);
 	desenhar_parede(vertices_areia, texture_id, 1);
+	desenha_vidro(vertices_vidro);
+	desenha_sala();
+
 	gera_valores_bolhas();
 
 	// Desenho de circulo (para ajuda ao posicionamento) e dos animais em si
