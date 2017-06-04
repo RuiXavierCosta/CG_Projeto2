@@ -415,13 +415,6 @@ void display(void)
 		glLightfv(GL_LIGHT0, GL_POSITION, pos_luz0);
 	glPopMatrix();
 
-	glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, const_at1);
-
-	glPushMatrix();
-		glTranslatef(0.0, 11000.0, 1990.0);
-		glLightfv(GL_LIGHT1, GL_POSITION, pos_luz1);
-	glPopMatrix();
-
 
 	// posicionamento da câmara virtual com função gluLookAt
 	glLoadIdentity();
@@ -430,7 +423,7 @@ void display(void)
 	desenha_sol(0, 0, 10000, 400);
 	desenha_topo_agua(4.1);
 	//desenha_areia(0);
-	desenha_eixos(6000);
+	//desenha_eixos(6000);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, branco);
 	desenhar_parede(vertices_parede1, texture_id, 0);
 	desenhar_parede(vertices_parede2, texture_id, 0);
@@ -695,11 +688,6 @@ void InitGL()
 
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, white);
-
-	glEnable(GL_LIGHT1);
-
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, white);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, white);
 
 	glMatrixMode(GL_MODELVIEW);
 

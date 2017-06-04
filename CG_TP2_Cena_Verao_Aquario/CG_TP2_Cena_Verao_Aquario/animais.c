@@ -19,6 +19,7 @@
 //	Definições /////////////////////////////////////////////////////////////////
 //
 
+#define PI    3.1415927
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
@@ -107,8 +108,8 @@ void abana_animal(float rotacao_animal[3], float velocidade_animal[4], float ori
 	}
 
 	if (orientacao_animal[3] == 0.0) {
-		if (rotacao_animal[i] <= orientacao_animal[i] + 15.0) {
-			rotacao_animal[i] += velocidade_animal[i] ;
+		if (rotacao_animal[i] <= orientacao_animal[i] + 10.0) {
+			rotacao_animal[i] += velocidade_animal[i] / 10.0;
 		}
 		else {
 			orientacao_animal[3] = 1.0;
@@ -116,8 +117,8 @@ void abana_animal(float rotacao_animal[3], float velocidade_animal[4], float ori
 	}
 
 	if (orientacao_animal[3] == 1.0) {
-		if (rotacao_animal[i] >= orientacao_animal[i] - 15.0) {
-			rotacao_animal[i] -= velocidade_animal[i] ;
+		if (rotacao_animal[i] >= orientacao_animal[i] - 10.0) {
+			rotacao_animal[i] -= velocidade_animal[i] / 10.0;
 		}
 		else {
 			orientacao_animal[3] = 0.0;
@@ -127,9 +128,28 @@ void abana_animal(float rotacao_animal[3], float velocidade_animal[4], float ori
 }
 
 void move_animal(float posicao_animal[3], float velocidade_animal[4], float orientacao_animal[4])
-{
-	for (int i = 0; i < 3; i++)
+{	
+	float rad = 2 * PI / 360;
+	float inc_x = velocidade_animal[0] * cos((orientacao_animal[1]  -90)*rad);
+	float inc_y = velocidade_animal[1] * sin((orientacao_animal[1] - 90)*rad);
+	float inc_z = velocidade_animal[2] * (orientacao_animal[2]) / 360.0;
+
+	if (posicao_animal[0] + inc_x > 9000 || posicao_animal[0] + inc_x < -9000)
 	{
-		posicao_animal[i] += velocidade_animal[i] * orientacao_animal[i];
+		orientacao_animal[1] = -orientacao_animal[1];
 	}
+
+	if (posicao_animal[1] + inc_y > 9000 || posicao_animal[1] + inc_y < -9000)
+	{
+		orientacao_animal[1] = -orientacao_animal[1];
+	}
+
+	if (posicao_animal[2] + inc_z > 4000 || posicao_animal[2] + inc_x < 100)
+	{
+		orientacao_animal[2] = -orientacao_animal[2];
+	}
+
+	posicao_animal[0] += inc_x;
+	posicao_animal[1] += inc_y;
+	//posicao_animal[2] += inc_z;
 }

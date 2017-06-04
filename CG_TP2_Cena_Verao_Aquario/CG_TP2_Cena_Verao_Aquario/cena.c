@@ -96,13 +96,13 @@ float vertices_betao5[8][3] = { // imaginando um cubo virado para a camara
 	{ -50, 100, 20.1 }, // canto inferior esquerdo frente
 };
 
-float posicao_salmon[] = { 0.0f, 9000.0f, 600.0f };
+float posicao_salmon[] = { 0.0f, 300.0f, 3000.0f };
 float posicao_manatee[] = { 1000.0f, 9000.0f, 600.0f };
-float posicao_orca[] = { -1000.0f, 9000.0f, 600.0f };
-float posicao_tiger_shark[] = { 2000.0f, 9000.0f, 600.0f };
-float posicao_trout[] = { -2000.0f, 9000.0f, 600.0f };
-float posicao_tuna[] = { 3000.0f, 9000.0f, 600.0f };
-float posicao_shark[] = { -3000.0f, 9000.0f, 600.0f };
+float posicao_orca[] = { -1000.0f, 9000.0f, 3600.0f };
+float posicao_tiger_shark[] = { 2000.0f, 9000.0f, 500.0f };
+float posicao_trout[] = { -2000.0f, 9000.0f, 300.0f };
+float posicao_tuna[] = { 3000.0f, 9000.0f, 2500.0f };
+float posicao_shark[] = { -3000.0f, 9000.0f, 3800.0f };
 float posicao_goldfish[] = { 4000.0f, 9000.0f, 600.0f };
 //
 //	Funções ////////////////////////////////////////////////////////////////////
