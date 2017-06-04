@@ -66,3 +66,16 @@ void importar_modelos(void)
 	glmFacetNormals(tuna);
 	glmVertexNormals(tuna, 90.0);
 }
+
+void preparar_modelos()
+{
+	importar_modelos();
+	glmScale(goldfish, 100.0);
+	glmScale(manatee, 100.0);
+	glmScale(orca, 100.0);
+	glmScale(salmon, 100.0);
+	glmScale(shark, 100.0);
+	glmScale(tiger_shark, 100.0);
+	glmScale(trout, 100.0);
+	glmScale(tuna, 100.0);
+}

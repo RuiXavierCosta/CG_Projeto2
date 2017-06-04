@@ -419,6 +419,16 @@ void display(void)
 	desenhar_circulo(20);
 	desenhar_tubarao(800.0, 800.0, 2500.0);
 	desenhar_goldfish(800.0, 800.0, 2400.0);
+	
+	float posicao_salmon[] = { 0.0f, 0.0f, 2400.0f };
+	float rotacao_salmon[] = { 90.0f, 0.0f, 0.0f };
+	float material_salmon[] = { 0.8f, 0.0f, 0.0f, 1.0f };
+	desenhar_objeto_mat(salmon, posicao_salmon, rotacao_salmon, material_salmon);
+
+	float posicao_goldfish[] = { 0.0f, 0.0f, 2300.0f };
+	float rotacao_goldfish[] = { 90.0f, 0.0f, 0.0f };
+	float material_goldfish[] = { 0.0f, 0.0f, 0.6f, 1.0f };
+	desenhar_objeto_mat(goldfish, posicao_goldfish, rotacao_goldfish, material_goldfish);
 
 	glutSwapBuffers();
 }
@@ -658,14 +668,6 @@ void InitGL()
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
-}
-
-
-void preparar_modelos()
-{
-	importar_modelos();
-	glmScale(shark, 100.0);
-	glmScale(goldfish, 100.0);
 }
 
 
