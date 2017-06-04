@@ -30,14 +30,14 @@ float tiger_shark_color[4] = { 93.0 / 255.0, 88.0 / 255.0, 69.0 / 255.0, 1.0 };
 float trout_color[4] = { 164.0 / 255.0, 120.0 / 255.0, 75.0 / 255.0, 1.0 };
 float tuna_color[4] = { 51.0 / 255.0, 126.0 / 255.0, 223.0 / 255.0, 1.0 };
 
-float goldfish_speed[4] = {10.0, 10.0, 10.0, 0.0};
-float manatee_speed[4] = {1.0, 1.0, 1.0, 1.0 };
-float orca_speed[4] = {3.0, 3.0, 5.0, 1.0 };
-float salmon_speed[4] = {13.0, 13.0, 13.0, 0.0 };
-float shark_speed[4] = {6.0,6.0, 2.0, 0.0 };
-float tiger_shark_speed[4] = {3.0, 3.0, 1.0, 0.0 };
-float trout_speed[4] = {12.0, 12.0, 12.0, 0.0 };
-float tuna_speed[4] = {8.0, 8.0, 5.0, 0.0 };
+float goldfish_speed[4] = {1.0, 1.0, 1.0, 0.0};
+float manatee_speed[4] = {0.1, 0.1, 0.1, 1.0 };
+float orca_speed[4] = {0.3, 0.3, 0.5, 1.0 };
+float salmon_speed[4] = {1.3, 1.3, 1.3, 0.0 };
+float shark_speed[4] = { 0.6, 0.6, 0.2, 0.0 };
+float tiger_shark_speed[4] = { 0.3, 0.3, 0.1, 0.0 };
+float trout_speed[4] = {1.2, 1.2, 1.2, 0.0 };
+float tuna_speed[4] = {0.8, 0.8, 0.5, 0.0 };
 
 float goldfish_rotation[3] = { 90.0, 90.0, 0.0 };
 float manatee_rotation[3] = { 90.0, 90.0, 0.0 };
@@ -48,14 +48,14 @@ float tiger_shark_rotation[3] = { 90.0, 90.0, 0.0 };
 float trout_rotation[3] = { 90.0, 90.0, 0.0 };
 float tuna_rotation[3] = { 90.0, 90.0, 0.0 };
 
-float goldfish_orientation[4] = { 90.0, 90.0, 0.0, 0 };
-float manatee_orientation[4] = { 90.0, 90.0, 0.0, 0 };
-float orca_orientation[4] = { 90.0, 90.0, 0.0, 0 };
-float salmon_orientation[4] = { 90.0, 90.0, 0.0, 0 };
-float shark_orientation[4] = { 90.0, 90.0, 0.0, 0 };
-float tiger_shark_orientation[4] = { 90.0, 90.0, 0.0, 0 };
-float trout_orientation[4] = { 90.0, 90.0, 0.0, 0 };
-float tuna_orientation[4] = { 90.0, 90.0, 0.0, 0 };
+float goldfish_orientation[4] = { 1.0, 0.0, 0.0, 0 };
+float manatee_orientation[4] = { 1.0, 0.0, 0.0, 0 };
+float orca_orientation[4] = { 1.0, 0.0, 0.0, 0 };
+float salmon_orientation[4] = { 1.0, 0.0, 0.0, 0 };
+float shark_orientation[4] = { 1.0, 0.0, 0.0, 0 };
+float tiger_shark_orientation[4] = { 1.0, 0.0, 0.0, 0 };
+float trout_orientation[4] = { 1.0, 0.0, 0.0, 0 };
+float tuna_orientation[4] = { 1.0, 0.0, 0.0, 0 };
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //

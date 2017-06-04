@@ -108,7 +108,7 @@ void abana_animal(float rotacao_animal[3], float velocidade_animal[4], float ori
 
 	if (orientacao_animal[3] == 0.0) {
 		if (rotacao_animal[i] <= orientacao_animal[i] + 15.0) {
-			rotacao_animal[i] += velocidade_animal[i] / 10.0;
+			rotacao_animal[i] += velocidade_animal[i] ;
 		}
 		else {
 			orientacao_animal[3] = 1.0;
@@ -117,11 +117,19 @@ void abana_animal(float rotacao_animal[3], float velocidade_animal[4], float ori
 
 	if (orientacao_animal[3] == 1.0) {
 		if (rotacao_animal[i] >= orientacao_animal[i] - 15.0) {
-			rotacao_animal[i] -= velocidade_animal[i] / 10.0;
+			rotacao_animal[i] -= velocidade_animal[i] ;
 		}
 		else {
 			orientacao_animal[3] = 0.0;
 		}
 	}
 
+}
+
+void move_animal(float posicao_animal[3], float velocidade_animal[4], float orientacao_animal[4])
+{
+	for (int i = 0; i < 3; i++)
+	{
+		posicao_animal[i] += velocidade_animal[i] * orientacao_animal[i];
+	}
 }

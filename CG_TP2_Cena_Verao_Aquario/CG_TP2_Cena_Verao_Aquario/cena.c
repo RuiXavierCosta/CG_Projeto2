@@ -95,6 +95,15 @@ float vertices_betao5[8][3] = { // imaginando um cubo virado para a camara
 	{ -50, 120, 20.1 }, // canto inferior esquerdo tras
 	{ -50, 100, 20.1 }, // canto inferior esquerdo frente
 };
+
+float posicao_salmon[] = { 0.0f, 9000.0f, 600.0f };
+float posicao_manatee[] = { 1000.0f, 9000.0f, 600.0f };
+float posicao_orca[] = { -1000.0f, 9000.0f, 600.0f };
+float posicao_tiger_shark[] = { 2000.0f, 9000.0f, 600.0f };
+float posicao_trout[] = { -2000.0f, 9000.0f, 600.0f };
+float posicao_tuna[] = { 3000.0f, 9000.0f, 600.0f };
+float posicao_shark[] = { -3000.0f, 9000.0f, 600.0f };
+float posicao_goldfish[] = { 4000.0f, 9000.0f, 600.0f };
 //
 //	Funções ////////////////////////////////////////////////////////////////////
 //
@@ -506,25 +515,23 @@ void desenha_peixes()
 	desenhar_tubarao(1000, 9000, 200.0);
 	desenhar_goldfish(-1000, 9000, 200.0);*/
 
+	abana_animal(salmon_rotation, salmon_speed, salmon_orientation);
+	abana_animal(manatee_rotation, manatee_speed, manatee_orientation);
+	abana_animal(orca_rotation, orca_speed, orca_orientation);
+	abana_animal(tiger_shark_rotation, tiger_shark_speed, tiger_shark_orientation);
+	abana_animal(trout_rotation, trout_speed, trout_orientation);
+	abana_animal(tuna_rotation, tuna_speed, tuna_orientation);
+	abana_animal(shark_rotation, shark_speed, shark_orientation);
+	abana_animal(goldfish_rotation, goldfish_speed, goldfish_orientation);
 
-
-	float posicao_salmon[] = { 0.0f, 9000.0f, 600.0f };
-	float posicao_manatee[] = { 1000.0f, 9000.0f, 600.0f };
-	float posicao_orca[] = { -1000.0f, 9000.0f, 600.0f };
-	float posicao_tiger_shark[] = { 2000.0f, 9000.0f, 600.0f };
-	float posicao_trout[] = { -2000.0f, 9000.0f, 600.0f };
-	float posicao_tuna[] = { 3000.0f, 9000.0f, 600.0f };
-	float posicao_shark[] = { -3000.0f, 9000.0f, 600.0f };
-	float posicao_goldfish[] = { 4000.0f, 9000.0f, 600.0f };
-
-	abana_animal(&salmon_rotation, salmon_speed, &salmon_orientation);
-	abana_animal(&manatee_rotation, manatee_speed, &manatee_orientation);
-	abana_animal(&orca_rotation, orca_speed, &orca_orientation);
-	abana_animal(&tiger_shark_rotation, tiger_shark_speed, &tiger_shark_orientation);
-	abana_animal(&trout_rotation, trout_speed, &trout_orientation);
-	abana_animal(&tuna_rotation, tuna_speed, &tuna_orientation);
-	abana_animal(&shark_rotation, shark_speed, &shark_orientation);
-	abana_animal(&goldfish_rotation, goldfish_speed, &goldfish_orientation);
+	move_animal(posicao_salmon, salmon_speed, salmon_orientation);
+	move_animal(posicao_manatee, manatee_speed, manatee_orientation);
+	move_animal(posicao_orca, orca_speed, orca_orientation);
+	move_animal(posicao_tiger_shark, tiger_shark_speed, tiger_shark_orientation);
+	move_animal(posicao_trout, trout_speed, trout_orientation);
+	move_animal(posicao_tuna, tuna_speed, tuna_orientation);
+	move_animal(posicao_shark, shark_speed, shark_orientation);
+	move_animal(posicao_goldfish, goldfish_speed, goldfish_orientation);
 
 	desenhar_objeto_mat(salmon, posicao_salmon, salmon_rotation, salmon_color);
 	desenhar_objeto_mat(manatee, posicao_manatee, manatee_rotation, manatee_color);

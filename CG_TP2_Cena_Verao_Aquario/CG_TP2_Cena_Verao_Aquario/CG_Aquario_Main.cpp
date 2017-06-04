@@ -153,6 +153,17 @@ float vertices_areia[8][3] = { // imaginando um cubo virado para a camara
 	{ 100, 100, -1.0 }, // canto inferior esquerdo frente
 };
 
+float vertices_topo_agua[8][3] = { // imaginando um cubo virado para a camara
+	{ -100.0, 100.0, 35.0 }, // canto superior direito frente
+	{ -100.0, -100.0, 35.0 }, // canto superior direito tras
+	{ 100.0, -100.0, 35.0 }, // canto superior esquerdo tras
+	{ 100.0, 100.0, 35.0 }, // canto superior esquerdo frente
+	{ -100, 100, 35.1 }, // canto inferior direito frente
+	{ -100, -100, 35.1 }, // canto inferior direito tras
+	{ 100, -100, 35.1 }, // canto inferior esquerdo tras
+	{ 100, 100, 35.1 }, // canto inferior esquerdo frente
+};
+
 float vertices_vidro[8][3] = { // imaginando um cubo virado para a camara
 	{ 99.0, 100, 35.0 }, // canto superior direito frente
 	{ 99, 99, 35.0 }, // canto superior direito tras
@@ -165,7 +176,7 @@ float vertices_vidro[8][3] = { // imaginando um cubo virado para a camara
 };
 
 // Quantidade máxima de texturas a serem usadas no programa
-#define MAX_NO_TEXTURES 2
+#define MAX_NO_TEXTURES 3
 
 // Vetor com os números das texturas
 GLuint texture_id[MAX_NO_TEXTURES];
@@ -417,7 +428,7 @@ void display(void)
 	gluLookAt(camara_x, camara_y, camara_z, mira_x, mira_y, mira_z, 0, 0, 1);
 
 	desenha_sol(0, 0, 10000, 400);
-	desenha_topo_agua(4);
+	//desenha_topo_agua(4);
 	//desenha_areia(0);
 	desenha_eixos(6000);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, branco);
@@ -425,6 +436,7 @@ void display(void)
 	desenhar_parede(vertices_parede2, texture_id, 0);
 	desenhar_parede(vertices_parede3, texture_id, 0);
 	desenhar_parede(vertices_areia, texture_id, 1);
+	desenhar_parede(vertices_topo_agua, texture_id, 2);
 	//desenha_vidro(vertices_vidro);
 	desenha_sala();
 
@@ -706,7 +718,7 @@ void preparar_textura(void)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	// Define quantas texturas serão usadas no programa 
-	glGenTextures(2, texture_id);  // 1 = uma textura;
+	glGenTextures(3, texture_id);  // 1 = uma textura;
 								   // texture_id = vetor que guardas os números das texturas
 
 								   // Define o número da textura do cubo.
@@ -725,6 +737,11 @@ void preparar_textura(void)
 	glBindTexture(GL_TEXTURE_2D, texture_id[1]);
 	image_t temp_image2;
 	tgaLoad("areia.tga", &temp_image2, TGA_FREE | TGA_LOW_QUALITY);
+
+	texture_id[2] = 1003;
+	glBindTexture(GL_TEXTURE_2D, texture_id[2]);
+	image_t temp_image3;
+	tgaLoad("agua_topo.tga", &temp_image3, TGA_FREE | TGA_LOW_QUALITY);
 }
 
 
